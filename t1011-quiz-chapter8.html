@@ -8,77 +8,474 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
-            --bg-primary: #09090b; --bg-secondary: #18181b; --bg-tertiary: #27272a;
+            --bg-primary: #09090b;
+            --bg-secondary: #18181b;
+            --bg-tertiary: #27272a;
             --bg-card: linear-gradient(145deg, rgba(39, 39, 42, 0.5), rgba(24, 24, 27, 0.8));
-            --border: rgba(63, 63, 70, 0.5); --border-hover: rgba(113, 113, 122, 0.5);
-            --text-primary: #fafafa; --text-secondary: #a1a1aa; --text-muted: #71717a;
-            --accent-1: #3b82f6; --accent-2: #8b5cf6; --success: #22c55e; --danger: #ef4444;
+            --border: rgba(63, 63, 70, 0.5);
+            --border-hover: rgba(113, 113, 122, 0.5);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent-1: #3b82f6;
+            --accent-2: #8b5cf6;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
             --gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            --shadow-glow: 0 0 60px -15px rgba(139, 92, 246, 0.3);
         }
-        body { font-family: 'Sora', sans-serif; background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; -webkit-font-smoothing: antialiased; }
-        .bg-gradient { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.15), transparent), radial-gradient(ellipse 60% 50% at 100% 50%, rgba(139, 92, 246, 0.1), transparent); pointer-events: none; z-index: 0; }
-        .noise { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 1; }
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 2; }
-        .header { background: var(--bg-card); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 20px; padding: 24px 32px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-        .header-left { display: flex; align-items: center; gap: 16px; }
-        .back-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; color: var(--text-secondary); text-decoration: none; font-size: 1.3rem; transition: all 0.3s ease; }
-        .back-btn:hover { background: var(--bg-tertiary); border-color: var(--border-hover); color: var(--text-primary); transform: translateX(-3px); }
-        .header-title h1 { font-size: 1.5rem; font-weight: 700; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .header-title p { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
-        .header-score { text-align: center; padding: 12px 24px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; }
-        .score-value { font-size: 1.8rem; font-weight: 700; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .score-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        .progress-container { background: var(--bg-card); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px; margin-bottom: 32px; }
-        .progress-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
-        .progress-text { font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; }
-        .progress-bar-bg { height: 10px; background: var(--bg-tertiary); border-radius: 100px; overflow: hidden; }
-        .progress-bar { height: 100%; background: var(--gradient-primary); border-radius: 100px; transition: width 0.5s ease; width: 0%; }
-        .question-card { background: var(--bg-card); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin-bottom: 24px; }
-        .question-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .question-number { font-size: 0.8rem; font-weight: 600; color: var(--accent-1); text-transform: uppercase; letter-spacing: 1px; }
-        .question-type { padding: 6px 12px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 100px; font-size: 0.75rem; font-weight: 500; color: var(--text-muted); }
-        .question-text { font-size: 1.1rem; font-weight: 500; color: var(--text-primary); line-height: 1.6; margin-bottom: 24px; }
-        .options { display: flex; flex-direction: column; gap: 12px; }
-        .option { padding: 16px 20px; background: var(--bg-secondary); border: 2px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.3s ease; font-size: 0.95rem; color: var(--text-secondary); }
-        .option:hover { border-color: var(--border-hover); background: var(--bg-tertiary); color: var(--text-primary); }
-        .option.selected { border-color: var(--accent-1); background: rgba(59, 130, 246, 0.1); color: var(--text-primary); }
-        .option.correct { border-color: var(--success); background: rgba(34, 197, 94, 0.1); color: var(--success); }
-        .option.incorrect { border-color: var(--danger); background: rgba(239, 68, 68, 0.1); color: var(--danger); }
-        .option.disabled { cursor: not-allowed; opacity: 0.6; }
-        .fill-blank-input { padding: 12px 16px; background: var(--bg-secondary); border: 2px solid var(--border); border-radius: 8px; color: var(--text-primary); font-family: 'Sora', sans-serif; font-size: 0.95rem; width: 100%; max-width: 400px; transition: all 0.3s ease; }
-        .fill-blank-input:focus { outline: none; border-color: var(--accent-1); background: var(--bg-tertiary); }
-        .fill-blank-input.correct { border-color: var(--success); background: rgba(34, 197, 94, 0.1); }
-        .fill-blank-input.incorrect { border-color: var(--danger); background: rgba(239, 68, 68, 0.1); }
-        .explanation { margin-top: 20px; padding: 16px 20px; background: rgba(59, 130, 246, 0.05); border-left: 3px solid var(--accent-1); border-radius: 8px; display: none; }
-        .explanation.show { display: block; }
-        .explanation-title { font-size: 0.85rem; font-weight: 600; color: var(--accent-1); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .explanation-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
-        .buttons-container { display: flex; gap: 12px; margin-top: 32px; }
-        .btn { flex: 1; padding: 14px 24px; border: none; border-radius: 12px; font-family: 'Sora', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
-        .btn-primary { background: var(--gradient-primary); color: white; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -8px rgba(59, 130, 246, 0.5); }
-        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-        .btn-secondary { background: var(--bg-secondary); border: 1px solid var(--border); color: var(--text-secondary); }
-        .btn-secondary:hover { background: var(--bg-tertiary); border-color: var(--border-hover); color: var(--text-primary); }
-        .results-container { background: var(--bg-card); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 20px; padding: 40px; text-align: center; display: none; }
-        .results-container.show { display: block; }
-        .results-icon { font-size: 4rem; margin-bottom: 20px; }
-        .results-title { font-size: 2rem; font-weight: 700; margin-bottom: 12px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .results-score { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 32px; }
-        .results-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; margin-bottom: 32px; }
-        .result-stat { padding: 16px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; }
-        .result-stat-value { font-size: 1.8rem; font-weight: 700; margin-bottom: 4px; }
-        .result-stat-value.success { color: var(--success); }
-        .result-stat-value.danger { color: var(--danger); }
-        .result-stat-value.primary { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .result-stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        .hidden { display: none !important; }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.15), transparent),
+                radial-gradient(ellipse 60% 50% at 100% 50%, rgba(139, 92, 246, 0.1), transparent),
+                radial-gradient(ellipse 60% 50% at 0% 100%, rgba(6, 182, 212, 0.08), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .noise {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px 32px;
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+            transform: translateX(-3px);
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-title p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .header-score {
+            text-align: center;
+            padding: 12px 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .score-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .score-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 32px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .progress-bar-bg {
+            height: 10px;
+            background: var(--bg-tertiary);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 100px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        /* Question Card */
+        .question-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .question-number {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-type {
+            padding: 6px 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        /* Options */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .option:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .option.selected {
+            border-color: var(--accent-1);
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--text-primary);
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+        }
+
+        .option.incorrect {
+            border-color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        /* Text Input for fill-in-the-blank */
+        .fill-blank-input {
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Sora', sans-serif;
+            font-size: 0.95rem;
+            width: 100%;
+            max-width: 400px;
+            transition: all 0.3s ease;
+        }
+
+        .fill-blank-input:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            background: var(--bg-tertiary);
+        }
+
+        .fill-blank-input.correct {
+            border-color: var(--success);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .fill-blank-input.incorrect {
+            border-color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Explanation */
+        .explanation {
+            margin-top: 20px;
+            padding: 16px 20px;
+            background: rgba(59, 130, 246, 0.05);
+            border-left: 3px solid var(--accent-1);
+            border-radius: 8px;
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+        }
+
+        .explanation-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-1);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .explanation-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Buttons */
+        .buttons-container {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Sora', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -8px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+        }
+
+        /* Results */
+        .results-container {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            display: none;
+        }
+
+        .results-container.show {
+            display: block;
+        }
+
+        .results-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .results-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .results-score {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .results-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .result-stat {
+            padding: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .result-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .result-stat-value.success {
+            color: var(--success);
+        }
+
+        .result-stat-value.danger {
+            color: var(--danger);
+        }
+
+        .result-stat-value.primary {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .result-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hidden */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .header { flex-direction: column; align-items: flex-start; }
-            .header-score { width: 100%; }
-            .buttons-container { flex-direction: column; }
-            .results-stats { grid-template-columns: repeat(2, 1fr); }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-score {
+                width: 100%;
+            }
+
+            .buttons-container {
+                flex-direction: column;
+            }
+
+            .results-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -87,23 +484,25 @@
     <div class="noise"></div>
 
     <div class="container">
+        <!-- Header -->
         <div class="header">
             <div class="header-left">
                 <a href="index.html" class="back-btn">←</a>
                 <div class="header-title">
                     <h1>Chapitre 8 - Supports Magnétiques P1</h1>
-                    <p>Disques durs, têtes de lecture</p>
+                    <p>Historique et fondamentaux</p>
                 </div>
             </div>
             <div class="header-score">
                 <div class="score-value" id="current-score">0%</div>
-                <div class="score-label">Score</div>
+                <div class="score-label">Score actuel</div>
             </div>
         </div>
 
+        <!-- Progress -->
         <div class="progress-container">
             <div class="progress-header">
-                <span class="progress-text">Question <span id="current-question">1</span>/<span id="total-questions">30</span></span>
+                <span class="progress-text">Question <span id="current-question">1</span>/<span id="total-questions">25</span></span>
                 <span class="progress-text" id="progress-percentage">0%</span>
             </div>
             <div class="progress-bar-bg">
@@ -111,8 +510,12 @@
             </div>
         </div>
 
-        <div id="quiz-container"></div>
+        <!-- Quiz Container -->
+        <div id="quiz-container">
+            <!-- Questions will be injected here -->
+        </div>
 
+        <!-- Results -->
         <div class="results-container" id="results-container">
             <div class="results-icon" id="results-icon">🎉</div>
             <h2 class="results-title" id="results-title">Quiz terminé !</h2>
@@ -145,508 +548,226 @@
     </div>
 
     <script>
+        /**
+         * Base de données des questions du Chapitre 1
+         * Types: 'qcm' (1 réponse), 'qrm' (plusieurs réponses), 'fill' (texte à trou)
+         */
         const questionsBank = [
-            // QCM - Supports Magnétiques P1
-            {
-                type: 'qcm',
-                question: "Quel fut le premier disque dur commercialisé par IBM en 1956 ?",
-                options: ["ENIAC", "RAMAC 305", "EDVAC", "Mark 1"],
-                correct: 1,
-                explanation: "Le RAMAC 305 (Random Access Method of Accounting And Control) fut le premier disque dur commercialisé en 1956 avec 5 Mo de capacité."
-            },
-            {
-                type: 'qcm',
-                question: "Quelle était la capacité du RAMAC 305 ?",
-                options: ["500 Ko", "5 Mo", "50 Mo", "500 Mo"],
-                correct: 1,
-                explanation: "Le RAMAC 305 (1956) avait une capacité de 5 mégaoctets, ce qui était révolutionnaire pour l'époque."
-            },
-            {
-                type: 'qcm',
-                question: "Quelles substances ferromagnétiques sont principalement utilisées dans les supports magnétiques ?",
-                options: [
-                    "Fer, Nickel, Cobalt",
-                    "Cuivre, Zinc, Aluminium",
-                    "Or, Argent, Platine",
-                    "Carbone, Silicium, Phosphore"
-                ],
-                correct: 0,
-                explanation: "Les substances ferromagnétiques utilisées sont principalement le Fer, le Nickel et le Cobalt pour leur propriété d'aimantation résiduelle."
-            },
-            {
-                type: 'qcm',
-                question: "Qu'est-ce que l'aimantation rémanente (ou résiduelle) ?",
-                options: [
-                    "L'aimantation temporaire",
-                    "L'aimantation qui reste après retrait du champ magnétique",
-                    "L'aimantation initiale",
-                    "L'aimantation maximale"
-                ],
-                correct: 1,
-                explanation: "L'aimantation rémanente (M+) est l'aimantation qui persiste dans le matériau après le retrait du champ magnétique externe."
-            },
-            {
-                type: 'qcm',
-                question: "Qu'est-ce que le champ coercitif (Hc) ?",
-                options: [
-                    "Le champ magnétique maximal",
-                    "Le champ nécessaire pour ramener l'aimantation à zéro",
-                    "Le champ de lecture",
-                    "Le champ d'écriture"
-                ],
-                correct: 1,
-                explanation: "Le champ coercitif (Hc) est l'intensité du champ magnétique inverse nécessaire pour ramener l'aimantation à zéro."
-            },
-            {
-                type: 'qcm',
-                question: "Quelle est la taille actuelle approximative des particules magnétiques sur un disque dur ?",
-                options: ["25 nm", "250 nm sur 30 nm", "2500 nm", "25 µm"],
-                correct: 1,
-                explanation: "Les particules magnétiques actuelles mesurent environ 250 nanomètres sur 30 nanomètres de hauteur."
-            },
-            {
-                type: 'qcm',
-                question: "Quel phénomène physique limite la miniaturisation des particules magnétiques ?",
-                options: [
-                    "La surchauffe",
-                    "Le superparamagnétisme",
-                    "L'oxydation",
-                    "La conductivité"
-                ],
-                correct: 1,
-                explanation: "Le superparamagnétisme : quand deux particules aux polarités contraires sont trop proches, il peut y avoir des interférences et inversions spontanées de polarité."
-            },
-            {
-                type: 'qcm',
-                question: "Qu'est-ce que la technologie 'Pixie Dust' (AFC - Anti-Ferromagnetically Coupled) ?",
-                options: [
-                    "Un nouveau type de tête de lecture",
-                    "Un revêtement de 3 atomes de ruthénium entre 2 couches magnétiques",
-                    "Un type de disque optique",
-                    "Un algorithme de compression"
-                ],
-                correct: 1,
-                explanation: "Pixie Dust (2001) : revêtement de 3 atomes de ruthénium entre 2 couches magnétiques, permettant d'atteindre 25,7 Gbits/pouce² et jusqu'à 400 Gbits/pouce²."
-            },
-            {
-                type: 'qcm',
-                question: "Quel type de tête a été introduit par IBM en 1991 ?",
-                options: [
-                    "Tête inductive",
-                    "Tête magnéto-résistance (MR)",
-                    "Tête laser",
-                    "Tête optique"
-                ],
-                correct: 1,
-                explanation: "La tête magnéto-résistance (MR) d'IBM (1991) observe les variations de résistance causées par le champ magnétique, donnant un signal plus fort et clair."
-            },
-            {
-                type: 'qcm',
-                question: "Pourquoi la tête MR (magnéto-résistance) nécessite-t-elle DEUX têtes ?",
-                options: [
-                    "Pour aller plus vite",
-                    "Elle ne fonctionne qu'en lecture, il faut une tête séparée pour l'écriture",
-                    "Pour la redondance",
-                    "Pour le refroidissement"
-                ],
-                correct: 1,
-                explanation: "La tête MR ne fonctionne qu'en LECTURE. Il faut donc une seconde tête pour l'ÉCRITURE."
-            },
-            {
-                type: 'qcm',
-                question: "Qu'est-ce que la tête GMR introduite par IBM en 1997 ?",
-                options: [
-                    "Giant Magnetic Recorder",
-                    "Giant Magneto Resistive (résistance géante)",
-                    "Global Memory Reader",
-                    "Graphic Memory Recorder"
-                ],
-                correct: 1,
-                explanation: "GMR (Giant Magneto Resistive) : effet découvert en 1988, changements de résistance considérables dans des couches alternées de métaux. Plus petit que la MR classique."
-            },
-
-            // QRM
-            {
-                type: 'qrm',
-                question: "Quels sont les modes d'enregistrement magnétique ? (Plusieurs réponses)",
-                options: [
-                    "Enregistrement longitudinal",
-                    "Enregistrement perpendiculaire",
-                    "Enregistrement diagonal",
-                    "Enregistrement circulaire",
-                    "Enregistrement spiralé"
-                ],
-                correct: [0, 1],
-                explanation: "Les deux principaux modes d'enregistrement sont : longitudinal (parallèle à la surface) et perpendiculaire (vertical, perpendiculaire à la surface)."
-            },
-            {
-                type: 'qrm',
-                question: "Quelles sont les caractéristiques du cycle d'hystérésis ? (Plusieurs réponses)",
-                options: [
-                    "Caractérise les milieux magnétisables",
-                    "Détermine la taille des aiguilles",
-                    "Indique l'aimantation rémanente",
-                    "Indique le champ coercitif",
-                    "Mesure la température"
-                ],
-                correct: [0, 1, 2, 3],
-                explanation: "Le cycle d'hystérésis caractérise le matériau magnétisable : taille des aiguilles, aimantation rémanente, champ coercitif. Pas de mesure de température."
-            },
-            {
-                type: 'qrm',
-                question: "Quelles technologies de têtes ont été développées ? (Dans l'ordre chronologique)",
-                options: [
-                    "Tête inductive en Ferrite (1996)",
-                    "Tête magnéto-résistance MR (1991)",
-                    "Tête magnéto-résistance géante GMR (1997)",
-                    "Tête laser HAMR",
-                    "Tête optique"
-                ],
-                correct: [1, 0, 2],
-                explanation: "Ordre chronologique : MR (1991) → Inductive Ferrite (1996) → GMR (1997). HAMR est plus récent mais pas dans cette liste historique précise."
-            },
-            {
-                type: 'qrm',
-                question: "Quels sont les problèmes de la miniaturisation des particules magnétiques ? (Plusieurs réponses)",
-                options: [
-                    "Superparamagnétisme",
-                    "Interférences entre particules proches",
-                    "Inversions spontanées de polarité",
-                    "Surchauffe excessive",
-                    "Trop rapide"
-                ],
-                correct: [0, 1, 2],
-                explanation: "Miniaturisation : cause le superparamagnétisme, des interférences entre particules trop proches, et des inversions spontanées. Pas de problème de surchauffe ou vitesse."
-            },
-
-            // Fill
-            {
-                type: 'fill',
-                question: "Le premier disque dur commercialisé par IBM en 1956 s'appelait le _______ 305.",
-                answer: ["RAMAC", "Ramac", "ramac"],
-                explanation: "RAMAC 305 = Random Access Method of Accounting And Control (1956, 5 Mo)."
-            },
-            {
-                type: 'fill',
-                question: "Les trois principales substances ferromagnétiques sont le Fer, le Nickel et le _______.",
-                answer: ["Cobalt", "cobalt"],
-                explanation: "Fer, Nickel et Cobalt sont les trois principales substances ferromagnétiques utilisées."
-            },
-            {
-                type: 'fill',
-                question: "L'aimantation _______ est celle qui reste après retrait du champ magnétique.",
-                answer: ["rémanente", "remanente", "résiduelle", "residuelle"],
-                explanation: "L'aimantation rémanente (ou résiduelle) persiste après le retrait du champ magnétique externe."
-            },
-            {
-                type: 'fill',
-                question: "Le phénomène qui limite la miniaturisation des particules magnétiques s'appelle le _______.",
-                answer: ["superparamagnétisme", "Superparamagnétisme"],
-                explanation: "Le superparamagnétisme cause des inversions spontanées de polarité quand les particules sont trop petites et proches."
-            },
-            {
-                type: 'fill',
-                question: "La technologie Pixie Dust utilise un revêtement de 3 atomes de _______.",
-                answer: ["ruthénium", "Ruthénium"],
-                explanation: "Pixie Dust (AFC - 2001) : 3 atomes de ruthénium entre 2 couches magnétiques."
-            },
-            {
-                type: 'fill',
-                question: "La tête _______ (1991) observe les variations de résistance mais ne fonctionne qu'en lecture.",
-                answer: ["MR", "magnéto-résistance", "magneto-resistance"],
-                explanation: "La tête MR (Magnéto-Résistance, 1991) fonctionne uniquement en lecture, nécessitant une tête séparée pour l'écriture."
-            },
-            {
-                type: 'fill',
-                question: "GMR signifie Giant Magneto _______.",
-                answer: ["Resistive", "resistive", "Résistive", "resistive"],
-                explanation: "GMR = Giant Magneto Resistive (résistance géante), technologie IBM de 1997."
-            },
-            {
-                type: 'fill',
-                question: "L'enregistrement _______ oriente l'aimantation parallèlement à la surface du disque.",
-                answer: ["longitudinal", "Longitudinal"],
-                explanation: "L'enregistrement longitudinal oriente l'aimantation horizontalement (parallèle à la surface)."
-            },
-            {
-                type: 'fill',
-                question: "L'enregistrement _______ oriente l'aimantation verticalement par rapport à la surface.",
-                answer: ["perpendiculaire", "Perpendiculaire"],
-                explanation: "L'enregistrement perpendiculaire (PRM) oriente l'aimantation verticalement, permettant de meilleures densités."
-            },
             // QCM
             {
                 type: 'qcm',
-                question: "Quel composant de l'Unité de Commande contient l'adresse de la prochaine instruction à exécuter ?",
-                options: ["Registre d'instruction", "Décodeur", "Compteur ordinal", "Séquenceur"],
+                question: "En quelle année l'ENIAC, considéré comme le premier ordinateur électronique, a-t-il été créé ?",
+                options: ["1943", "1946", "1948", "1951"],
+                correct: 1,
+                explanation: "L'ENIAC (Electronic Numerical Integrator And Computer) a été créé en 1946 par John W. Mauchly et Prosper Eckert à l'Université de Pennsylvanie."
+            },
+            {
+                type: 'qcm',
+                question: "Qui est le mathématicien ayant décrit le concept de 'programme enregistré' qui est à la base des ordinateurs modernes ?",
+                options: ["Alan Turing", "Claude Shannon", "John von Neumann", "John Mauchly"],
                 correct: 2,
-                explanation: "Le compteur ordinal (ou Program Counter) contient l'adresse de la prochaine instruction à exécuter."
+                explanation: "John von Neumann a été le premier à décrire la notion de programme enregistré, où les instructions sont stockées sous forme de codes numériques dans la mémoire."
             },
             {
                 type: 'qcm',
-                question: "Que signifie CPU ?",
-                options: ["Computer Processing Unit", "Central Processing Unit", "Central Program Unit", "Computer Program Unit"],
-                correct: 1,
-                explanation: "CPU signifie Central Processing Unit (Unité Centrale de Traitement en français)."
-            },
-            {
-                type: 'qcm',
-                question: "Quel composant interprète l'instruction contenue dans le registre d'instruction ?",
-                options: ["Le séquenceur", "Le décodeur", "Le compteur ordinal", "L'UAL"],
-                correct: 1,
-                explanation: "Le décodeur interprète l'instruction pour déterminer quelle opération effectuer et comment aller chercher les opérandes."
-            },
-            {
-                type: 'qcm',
-                question: "Quels sont les deux champs qui composent une instruction ?",
-                options: [
-                    "Code instruction et code données",
-                    "Code opération et code opérande",
-                    "Code source et code destination",
-                    "Code registre et code mémoire"
-                ],
-                correct: 1,
-                explanation: "Une instruction est composée de deux champs : le code opération (définit l'action) et le code opérande (définit les paramètres/adresses)."
-            },
-            {
-                type: 'qcm',
-                question: "Quel composant génère les microcommandes pour piloter les autres entités du µP ?",
-                options: ["Le décodeur", "Le séquenceur", "Le registre d'état", "Le compteur ordinal"],
-                correct: 1,
-                explanation: "Le séquenceur génère une séquence de microcommandes rythmées par l'horloge pour piloter les composants du µP."
-            },
-            {
-                type: 'qcm',
-                question: "Que fait l'UAL (ALU) à la fin d'une opération en cas de débordement ?",
-                options: [
-                    "Elle arrête le processeur",
-                    "Elle met le bit OF (OverFlow) du registre d'état à 1",
-                    "Elle efface le résultat",
-                    "Elle déclenche une interruption"
-                ],
-                correct: 1,
-                explanation: "En cas de débordement (résultat trop grand), l'UAL met le bit OF (OverFlow) du registre d'état à 1 pour signaler le problème."
-            },
-            {
-                type: 'qcm',
-                question: "Comment s'appelle le bus qui véhicule les instructions ET les données entre les composants ?",
-                options: ["Bus d'adresses", "Bus de données", "Bus de commandes", "Bus de contrôle"],
-                correct: 1,
-                explanation: "Le bus de données (Data Bus) sert au transfert des informations, que ce soient des instructions ou des données."
-            },
-            {
-                type: 'qcm',
-                question: "Quelle est la particularité du bus de données ?",
-                options: [
-                    "Il est unidirectionnel",
-                    "Il est bidirectionnel",
-                    "Il ne transporte que des adresses",
-                    "Il fonctionne à sens unique"
-                ],
-                correct: 1,
-                explanation: "Le bus de données est bidirectionnel car les informations peuvent circuler dans les deux sens : UC → mémoire et mémoire → UC."
-            },
-            {
-                type: 'qcm',
-                question: "Avec un bus d'adresse de 16 bits, combien de mémoire peut-on adresser directement ?",
-                options: ["16 Ko", "64 Ko", "256 Ko", "1 Mo"],
-                correct: 1,
-                explanation: "Avec 16 bits on peut obtenir 2^16 = 65536 combinaisons = 64 Ko de mémoire adressable."
-            },
-            {
-                type: 'qcm',
-                question: "Avec un bus d'adresse de 32 bits, quelle est la taille maximale de mémoire adressable ?",
-                options: ["1 Go", "2 Go", "4 Go", "8 Go"],
+                question: "Combien de tubes électroniques (lampes) composaient l'ENIAC ?",
+                options: ["5 000", "10 468", "17 468", "20 000"],
                 correct: 2,
-                explanation: "Un bus d'adresse de 32 bits permet d'adresser 2^32 octets = 4 Go de mémoire physique."
+                explanation: "L'ENIAC était composé de 17 468 tubes électroniques (lampes), ce qui représentait une prouesse technique pour l'époque."
             },
             {
                 type: 'qcm',
-                question: "Quel composant du CPU est composé de circuits logiques comme des additionneurs et comparateurs ?",
-                options: ["L'UC", "L'UAL", "Le décodeur", "Le séquenceur"],
-                correct: 1,
-                explanation: "L'UAL (Unité Arithmétique et Logique) est composée de circuits logiques tels que additionneurs, comparateurs, etc."
-            },
-            {
-                type: 'qcm',
-                question: "D'où l'UAL reçoit-elle ses opérandes (données à manipuler) ?",
+                question: "Quel est le principal inconvénient d'un langage compilé par rapport à un langage interprété ?",
                 options: [
-                    "Du séquenceur",
-                    "Du bus des données",
-                    "Du registre d'instruction",
-                    "Du compteur ordinal"
+                    "Il est plus lent à l'exécution",
+                    "Il nécessite une étape de traduction (compilation) qui prend du temps",
+                    "Il est moins portable",
+                    "Il consomme plus de mémoire"
                 ],
                 correct: 1,
-                explanation: "L'UAL reçoit ses opérandes du bus des données. Ces données peuvent provenir de la mémoire ou de registres."
+                explanation: "Le principal inconvénient d'un langage compilé est qu'il nécessite une étape de compilation qui peut prendre du temps, surtout pour de gros projets."
             },
             {
                 type: 'qcm',
-                question: "Quel registre mémorise les états 'particuliers' générés par une opération (retenue, débordement, etc.) ?",
-                options: ["Registre d'instruction", "Compteur ordinal", "Registre d'état", "Séquenceur"],
+                question: "Quel langage de programmation est le plus RAPIDE à l'exécution ?",
+                options: ["Python (interprété)", "Java (compilé)", "Assembleur", "PHP (interprété)"],
                 correct: 2,
-                explanation: "Le registre d'état (PSW - Program Status Word) mémorise les états particuliers via des flags (drapeaux)."
+                explanation: "L'assembleur est le langage le plus rapide car il correspond directement aux instructions machine, sans couche d'abstraction supplémentaire."
             },
             {
                 type: 'qcm',
-                question: "Que signifie le flag ZF dans le registre d'état ?",
-                options: [
-                    "Zero Flag - le résultat est nul",
-                    "Zone Flag - zone mémoire",
-                    "Zéro Force - forcer à zéro",
-                    "Zap Flag - effacer"
-                ],
-                correct: 0,
-                explanation: "ZF (Zero Flag) indique que le résultat de la dernière opération est nul (égal à zéro)."
+                question: "En 1947, quel ordinateur fut le premier calculateur à programme enregistré selon l'architecture de von Neumann ?",
+                options: ["ENIAC", "EDVAC", "Manchester Mark 1", "EDSAC"],
+                correct: 1,
+                explanation: "L'EDVAC (Electronic Discret VAriable Computer) de 1947 fut le premier calculateur à programme enregistré basé sur l'architecture de von Neumann."
             },
             {
                 type: 'qcm',
-                question: "Dans quel sens circulent les adresses sur le bus d'adresses ?",
+                question: "Quelle était la principale méthode de programmation de l'ENIAC avant l'invention du programme enregistré ?",
                 options: [
-                    "Bidirectionnel",
-                    "Unidirectionnel : UC → mémoire",
-                    "Unidirectionnel : mémoire → UC",
-                    "Multi-directionnel"
+                    "Par cartes perforées",
+                    "Par connexions physiques (câbles) et commutateurs manuels",
+                    "Par langage assembleur",
+                    "Par langage machine"
                 ],
                 correct: 1,
-                explanation: "Le bus d'adresses est unidirectionnel : les adresses circulent uniquement dans le sens UC → mémoire."
+                explanation: "Avant le programme enregistré, l'ENIAC était programmé en effectuant des connexions physiques (câbles) entre les composants et en positionnant manuellement des commutateurs."
+            },
+            {
+                type: 'qcm',
+                question: "Dans la typologie historique des ordinateurs, comment appelait-on les ordinateurs 'plus petits, moins coûteux et conçus pour le labo' apparus à la fin des années 60 ?",
+                options: ["Micro-ordinateurs", "Mini-ordinateurs", "Serveurs", "Stations de travail"],
+                correct: 1,
+                explanation: "Les mini-ordinateurs sont apparus à la fin des années 60 comme des machines plus petites, moins coûteuses et conçues pour les laboratoires et petits services."
+            },
+            {
+                type: 'qcm',
+                question: "Quel est l'avantage principal du 'programme enregistré' de von Neumann ?",
+                options: [
+                    "Permettre l'utilisation de câbles",
+                    "Stocker le programme pour le réutiliser sans tout récrire",
+                    "Augmenter la vitesse de calcul",
+                    "Réduire la consommation électrique"
+                ],
+                correct: 1,
+                explanation: "L'avantage principal du programme enregistré est qu'on peut stocker le programme en mémoire pour le réutiliser sans avoir à refaire toutes les connexions physiques."
+            },
+            {
+                type: 'qcm',
+                question: "Quel ordinateur de 1948 fut le premier à disposer d'une unité de commande interne et à suivre un programme enregistré ?",
+                options: ["ENIAC", "EDVAC", "Manchester Mark 1", "IBM SSEC"],
+                correct: 2,
+                explanation: "Le Manchester Mark 1 (ou Ferranti Mark I) de 1948 fut le premier prototype à disposer d'une unité de commande interne et à suivre un programme enregistré."
             },
 
             // QRM
             {
                 type: 'qrm',
-                question: "Quels sont les composants de l'Unité de Commande (UC) ? (Plusieurs réponses possibles)",
+                question: "Quels sont les avantages de l'assembleur par rapport au code machine ? (Plusieurs réponses possibles)",
                 options: [
-                    "Registre d'instruction",
-                    "UAL",
-                    "Décodeur",
-                    "Séquenceur",
-                    "Registre d'état",
-                    "Compteur ordinal"
+                    "Gain en compréhension grâce aux expressions symboliques",
+                    "Le plus rapide à l'exécution",
+                    "Portable sur différentes machines",
+                    "Nécessite moins d'instructions"
                 ],
-                correct: [0, 2, 3, 4, 5],
-                explanation: "L'UC comprend : le registre d'instruction, le décodeur, le séquenceur, le registre d'état et le compteur ordinal. L'UAL fait partie de l'unité de calcul, pas de l'UC."
+                correct: [0, 1],
+                explanation: "L'assembleur offre un gain en compréhension grâce aux expressions symboliques (ex: ADD au lieu d'un code numérique) et reste le plus rapide à l'exécution. Cependant, il n'est PAS portable et nécessite beaucoup d'instructions."
             },
             {
                 type: 'qrm',
-                question: "Quelles sont les fonctions du CPU ? (Plusieurs réponses possibles)",
-                options: [
-                    "Acquérir et décoder les instructions",
-                    "Faire exécuter les opérations arithmétiques par l'UAL",
-                    "Gérer les adresses du programme via le compteur ordinal",
-                    "Mémoriser l'état interne via le registre d'état",
-                    "Afficher les résultats à l'écran"
-                ],
-                correct: [0, 1, 2, 3],
-                explanation: "Le CPU acquiert/décode les instructions, fait exécuter l'UAL, gère les adresses, mémorise l'état interne et fournit les signaux de commande. L'affichage n'est pas sa fonction."
+                question: "Quels langages sont des exemples de langages INTERPRÉTÉS ? (Plusieurs réponses possibles)",
+                options: ["Python", "C", "PHP", "Perl", "Java", "Basic"],
+                correct: [0, 2, 3, 5],
+                explanation: "Python, PHP, Perl et Basic sont des langages interprétés qui exécutent les instructions au fur et à mesure via un interpréteur, sans étape de compilation préalable."
             },
             {
                 type: 'qrm',
-                question: "Quels sont les 3 bus fondamentaux du processeur ? (Plusieurs réponses possibles)",
+                question: "Quels sont les inconvénients de l'assembleur ? (Plusieurs réponses possibles)",
                 options: [
-                    "Bus de données",
-                    "Bus d'adresses",
-                    "Bus de commandes",
-                    "Bus de contrôle",
-                    "Bus mémoire",
-                    "Bus graphique"
+                    "Instructions peu puissantes nécessitant beaucoup de code",
+                    "Instructions spécifiques à un modèle de processeur",
+                    "Lent à l'exécution",
+                    "Difficile à comprendre"
                 ],
-                correct: [0, 1, 2],
-                explanation: "Les 3 bus fondamentaux sont : le bus de données, le bus d'adresses et le bus de commandes (ou contrôle)."
+                correct: [0, 1],
+                explanation: "L'assembleur a pour inconvénients d'avoir des instructions peu puissantes (nécessitant beaucoup de code) et d'être spécifique à un modèle de processeur (pas de portabilité)."
             },
             {
                 type: 'qrm',
-                question: "Quand le compteur ordinal est-il modifié ? (Plusieurs réponses possibles)",
+                question: "Selon la typologie historique moderne, quelles sont les 5 parties de l'univers informatique aujourd'hui ? (Plusieurs réponses possibles)",
                 options: [
-                    "Au lancement du programme (chargement 1ère instruction)",
-                    "Lors de sauts (boucles, alternatives)",
-                    "Il est incrémenté (+1) pour passer à l'instruction suivante",
-                    "Lors d'une division par zéro",
-                    "Quand la mémoire est pleine"
+                    "Super calculateurs",
+                    "Mainframes",
+                    "Gros systèmes",
+                    "Serveurs",
+                    "Micro-ordinateurs",
+                    "Mini-ordinateurs",
+                    "Nouveaux périphériques intelligents"
                 ],
-                correct: [0, 1, 2],
-                explanation: "Le compteur ordinal est modifié : au lancement du programme, lors de sauts, et il est incrémenté (+1) pour les instructions séquentielles."
+                correct: [0, 2, 3, 4, 6],
+                explanation: "Les 5 parties sont : Super calculateurs, Gros systèmes, Serveurs, Micro-ordinateurs et Nouveaux périphériques intelligents (PABX, GSM, smartphones, etc.)."
             },
             {
                 type: 'qrm',
-                question: "Quels flags (indicateurs) peut-on trouver dans le registre d'état ? (Plusieurs réponses possibles)",
+                question: "Quelles sont les caractéristiques de l'ENIAC ? (Plusieurs réponses possibles)",
                 options: [
-                    "CF - Carry Flag (retenue)",
-                    "ZF - Zero Flag (résultat nul)",
-                    "OF - OverFlow (débordement)",
-                    "MF - Memory Flag (mémoire)",
-                    "SF - Sign Flag (signe)"
+                    "Pesait 30 tonnes",
+                    "Composé de 17 468 tubes",
+                    "Consommait environ 200 kilowatts",
+                    "Programmé par programme enregistré",
+                    "Créé en 1943",
+                    "Occupait 23 m³"
                 ],
-                correct: [0, 1, 2, 4],
-                explanation: "Les flags incluent : CF (Carry), ZF (Zero), OF (OverFlow), SF (Sign). MF n'existe pas dans les registres d'état standards."
+                correct: [0, 1, 2, 5],
+                explanation: "L'ENIAC pesait 30 tonnes, était composé de 17 468 tubes, consommait ~200 kW et occupait 23 m³. Il fut créé en 1946 (pas 1943) et était programmé par câbles (pas par programme enregistré)."
             },
             {
                 type: 'qrm',
-                question: "Que permet le bus de commandes ? (Plusieurs réponses possibles)",
+                question: "Quels sont les avantages d'un langage COMPILÉ ? (Plusieurs réponses possibles)",
                 options: [
-                    "Faire circuler les microcommandes du séquenceur",
-                    "Indiquer ce que le processeur veut faire",
-                    "Gérer les lectures et écritures",
-                    "Transporter des données",
-                    "Gérer les interruptions"
+                    "Gain en portabilité",
+                    "Plus rapide à l'exécution que l'interprété",
+                    "Pas de délai de compilation",
+                    "Le code source est facilement modifiable"
                 ],
-                correct: [0, 1, 2, 4],
-                explanation: "Le bus de commandes permet la circulation des microcommandes, indique les intentions du processeur (lecture/écriture), et gère les interruptions. Il ne transporte PAS de données."
+                correct: [0, 1],
+                explanation: "Un langage compilé offre un gain en portabilité (on peut le porter sur différentes machines avec un compilateur adapté) et est plus rapide à l'exécution qu'un langage interprété."
             },
 
             // Fill in the blank
             {
                 type: 'fill',
-                question: "Le _______ _______ contient l'instruction à exécuter.",
-                answer: ["registre d'instruction", "registre instruction", "RI"],
-                explanation: "Le registre d'instruction (RI) contient l'instruction à exécuter, dont l'adresse se trouve dans le compteur ordinal."
+                question: "Le mathématicien _______ a été le premier à décrire la notion de programme enregistré.",
+                answer: ["von neumann", "von Neumann", "neumann", "Neumann", "john von neumann"],
+                explanation: "John von Neumann a été le premier à décrire le concept de programme enregistré, où les instructions sont stockées en mémoire sous forme de codes numériques."
             },
             {
                 type: 'fill',
-                question: "CPU signifie Central _______ Unit.",
-                answer: ["Processing", "processing"],
-                explanation: "CPU signifie Central Processing Unit (Unité Centrale de Traitement)."
+                question: "L'ENIAC a été créé en _______ par John W. Mauchly et Prosper Eckert.",
+                answer: ["1946"],
+                explanation: "L'ENIAC (Electronic Numerical Integrator And Computer) a été créé en 1946 à l'Université de Pennsylvanie."
             },
             {
                 type: 'fill',
-                question: "Le _______ interprète l'instruction pour déterminer quelle opération effectuer.",
-                answer: ["décodeur", "Décodeur", "decodeur"],
-                explanation: "Le décodeur interprète le code opération pour savoir quelle opération effectuer et comment chercher les opérandes."
+                question: "Un _______ prend en entrée un fichier texte contenant le code source pour produire un fichier exécutable.",
+                answer: ["compilateur", "Compilateur"],
+                explanation: "Un compilateur traduit le code source écrit en langage évolué vers un fichier exécutable formé de codes numériques propres à la machine."
             },
             {
                 type: 'fill',
-                question: "Le _______ génère les microcommandes rythmées par l'horloge.",
-                answer: ["séquenceur", "Séquenceur", "sequenceur"],
-                explanation: "Le séquenceur génère une séquence de microcommandes chronologiques pour piloter les composants du µP."
+                question: "Un _______ exécute les instructions au fur et à mesure sans étape de compilation préalable.",
+                answer: ["interpréteur", "Interpréteur", "interpreteur", "Interpreteur"],
+                explanation: "Un interpréteur exécute les instructions ligne par ligne en simulant leur exécution, sans passer par une étape de compilation."
             },
             {
                 type: 'fill',
-                question: "L'Unité de Commande et l'Unité Arithmétique & Logique constituent l'Unité _______.",
-                answer: ["Centrale", "centrale", "CPU"],
-                explanation: "L'UC (Unité de Commande) et l'UAL forment ensemble l'Unité Centrale (CPU - Central Processing Unit)."
+                question: "L'_______ est le langage de programmation le plus proche de la machine et le plus rapide à l'exécution.",
+                answer: ["assembleur", "Assembleur"],
+                explanation: "L'assembleur utilise des expressions symboliques qui correspondent directement aux instructions machine, ce qui en fait le langage le plus rapide."
             },
             {
                 type: 'fill',
-                question: "Le bus de données est _______ car les informations circulent dans les deux sens.",
-                answer: ["bidirectionnel", "Bidirectionnel"],
-                explanation: "Le bus de données est bidirectionnel : les données peuvent aller de l'UC vers la mémoire et inversement."
+                question: "L'EDVAC de 1947 est le premier calculateur à _______ _______.",
+                answer: ["programme enregistré", "programme enregistre"],
+                explanation: "L'EDVAC (Electronic Discret VAriable Computer) fut le premier calculateur à implémenter le concept de programme enregistré de von Neumann."
             },
             {
                 type: 'fill',
-                question: "Le bus d'adresses est _______ : les adresses ne circulent que de l'UC vers la mémoire.",
-                answer: ["unidirectionnel", "Unidirectionnel"],
-                explanation: "Le bus d'adresses est unidirectionnel car seule l'UC envoie des adresses vers la mémoire, jamais l'inverse."
+                question: "Avant le programme enregistré, l'ENIAC était programmé par connexions _______ (câbles).",
+                answer: ["physiques", "Physiques"],
+                explanation: "La programmation de l'ENIAC se faisait en effectuant des connexions physiques (câbles) entre les composants et en positionnant manuellement des commutateurs."
             },
             {
                 type: 'fill',
-                question: "Le registre d'état est aussi appelé _______ (Program Status Word).",
-                answer: ["PSW", "psw"],
-                explanation: "Le registre d'état porte aussi le nom de PSW (Program Status Word) qui mémorise l'état du processeur via des flags."
+                question: "Dans un langage compilé, le gain en _______ permet de porter facilement le programme sur une autre machine.",
+                answer: ["portabilité", "Portabilité", "portabilite", "Portabilite"],
+                explanation: "Le gain en portabilité signifie qu'on peut facilement porter le programme sur une autre machine à condition de disposer d'un compilateur adapté pour cette machine."
             },
             {
                 type: 'fill',
-                question: "Le compteur ordinal est aussi appelé _______ (Program Counter).",
-                answer: ["PC", "pc"],
-                explanation: "Le compteur ordinal est aussi appelé PC (Program Counter) ou IP (Instruction Pointer)."
+                question: "Les _______ sont des ordinateurs 'plus petits et moins coûteux' apparus à la fin des années 60.",
+                answer: ["mini-ordinateurs", "mini ordinateurs", "minis"],
+                explanation: "Les mini-ordinateurs sont apparus à la fin des années 60 comme une alternative plus petite et moins coûteuse aux gros systèmes."
             }
         ];
 
@@ -656,6 +777,11 @@
         let shuffledQuestions = [];
         let userAnswers = [];
 
+        /**
+         * Mélange un tableau de manière aléatoire (algorithme Fisher-Yates)
+         * @param {Array} array - Le tableau à mélanger
+         * @returns {Array} Le tableau mélangé
+         */
         function shuffleArray(array) {
             const newArray = [...array];
             for (let i = newArray.length - 1; i > 0; i--) {
@@ -665,32 +791,53 @@
             return newArray;
         }
 
+        /**
+         * Initialise le quiz en mélangeant les questions
+         */
         function initQuiz() {
             shuffledQuestions = shuffleArray(questionsBank);
             currentQuestionIndex = 0;
             score = 0;
             answeredQuestions = 0;
             userAnswers = new Array(shuffledQuestions.length).fill(null);
+            
             document.getElementById('total-questions').textContent = shuffledQuestions.length;
             updateProgress();
             displayQuestion();
         }
 
+        /**
+         * Affiche la question actuelle
+         */
         function displayQuestion() {
             const question = shuffledQuestions[currentQuestionIndex];
             const container = document.getElementById('quiz-container');
+            
             let optionsHTML = '';
             
             if (question.type === 'qcm' || question.type === 'qrm') {
                 optionsHTML = '<div class="options">';
                 question.options.forEach((option, index) => {
                     const isSelected = userAnswers[currentQuestionIndex]?.includes(index);
-                    optionsHTML += `<div class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${index})">${option}</div>`;
+                    optionsHTML += `
+                        <div class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${index})">
+                            ${option}
+                        </div>
+                    `;
                 });
                 optionsHTML += '</div>';
             } else if (question.type === 'fill') {
                 const userAnswer = userAnswers[currentQuestionIndex] || '';
-                optionsHTML = `<input type="text" class="fill-blank-input" id="fill-input" placeholder="Entrez votre réponse..." value="${userAnswer}" onkeyup="handleFillInput(event)">`;
+                optionsHTML = `
+                    <input 
+                        type="text" 
+                        class="fill-blank-input" 
+                        id="fill-input"
+                        placeholder="Entrez votre réponse..."
+                        value="${userAnswer}"
+                        onkeyup="handleFillInput(event)"
+                    >
+                `;
             }
             
             const typeLabel = question.type === 'qcm' ? 'QCM' : question.type === 'qrm' ? 'QRM' : 'Texte à trou';
@@ -712,19 +859,27 @@
                     ${currentQuestionIndex > 0 ? '<button class="btn btn-secondary" onclick="previousQuestion()">Précédent</button>' : ''}
                     ${currentQuestionIndex < shuffledQuestions.length - 1 
                         ? '<button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" disabled>Valider & Suivant</button>'
-                        : '<button class="btn btn-primary" id="next-btn" onclick="finishQuiz()" disabled>Valider & Terminer</button>'}
+                        : '<button class="btn btn-primary" id="next-btn" onclick="finishQuiz()" disabled>Valider & Terminer</button>'
+                    }
                 </div>
             `;
 
+            // Auto-enable next button if question was already answered
             if (userAnswers[currentQuestionIndex] !== null) {
                 document.getElementById('next-btn').disabled = false;
             }
         }
 
+        /**
+         * Sélectionne une option (pour QCM et QRM)
+         * @param {number} index - L'index de l'option sélectionnée
+         */
         function selectOption(index) {
             const question = shuffledQuestions[currentQuestionIndex];
+            
             if (question.type === 'qcm') {
                 userAnswers[currentQuestionIndex] = [index];
+                // Update visual
                 document.querySelectorAll('.option').forEach((opt, i) => {
                     opt.classList.toggle('selected', i === index);
                 });
@@ -739,19 +894,29 @@
                 } else {
                     answers.push(index);
                 }
+                // Update visual
                 document.querySelectorAll('.option').forEach((opt, i) => {
                     opt.classList.toggle('selected', answers.includes(i));
                 });
             }
+            
+            // Enable next button
             document.getElementById('next-btn').disabled = false;
         }
 
+        /**
+         * Gère l'input pour les questions à trous
+         * @param {Event} event - L'événement clavier
+         */
         function handleFillInput(event) {
             const value = event.target.value.trim();
             userAnswers[currentQuestionIndex] = value;
             document.getElementById('next-btn').disabled = value === '';
         }
 
+        /**
+         * Valide la réponse actuelle et affiche le feedback
+         */
         function validateAnswer() {
             const question = shuffledQuestions[currentQuestionIndex];
             const userAnswer = userAnswers[currentQuestionIndex];
@@ -759,6 +924,7 @@
 
             if (question.type === 'qcm') {
                 isCorrect = userAnswer[0] === question.correct;
+                // Show correct/incorrect
                 document.querySelectorAll('.option').forEach((opt, i) => {
                     opt.classList.add('disabled');
                     if (i === question.correct) {
@@ -771,6 +937,7 @@
                 const sortedUser = [...userAnswer].sort();
                 const sortedCorrect = [...question.correct].sort();
                 isCorrect = JSON.stringify(sortedUser) === JSON.stringify(sortedCorrect);
+                // Show correct/incorrect
                 document.querySelectorAll('.option').forEach((opt, i) => {
                     opt.classList.add('disabled');
                     if (question.correct.includes(i)) {
@@ -791,12 +958,21 @@
                 }
             }
 
-            if (isCorrect) score++;
+            if (isCorrect) {
+                score++;
+            }
             answeredQuestions++;
+
+            // Show explanation
             document.getElementById('explanation').classList.add('show');
+            
+            // Update score display
             updateProgress();
         }
 
+        /**
+         * Passe à la question suivante
+         */
                         function nextQuestion() {
             if (userAnswers[currentQuestionIndex] === null) {
                 alert("Veuillez répondre à la question avant de continuer.");
@@ -824,6 +1000,9 @@
             }
         }
 
+        /**
+         * Termine le quiz et affiche les résultats
+         */
         function finishQuiz() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
@@ -834,6 +1013,7 @@
             const percentage = Math.round((score / shuffledQuestions.length) * 100);
             const xpEarned = score * 10;
             
+            // Save progress
             const progress = JSON.parse(localStorage.getItem('t1011-quiz-progress') || '{}');
             if (!progress.chapter8 || percentage > (progress.chapter8.score || 0)) {
                 progress.chapter8 = {
@@ -845,12 +1025,14 @@
                 localStorage.setItem('t1011-quiz-progress', JSON.stringify(progress));
             }
 
+            // Update UI
             document.getElementById('quiz-container').classList.add('hidden');
             document.querySelector('.progress-container').classList.add('hidden');
             
             const resultsContainer = document.getElementById('results-container');
             resultsContainer.classList.add('show');
             
+            // Set icon and message based on score
             let icon = '🎉';
             let title = 'Quiz terminé !';
             let message = 'Excellent travail !';
@@ -882,6 +1064,9 @@
             document.getElementById('xp-earned').textContent = xpEarned;
         }
 
+        /**
+         * Met à jour la barre de progression et le score
+         */
         function updateProgress() {
             const percentage = Math.round((score / shuffledQuestions.length) * 100);
             const progressPercentage = Math.round(((currentQuestionIndex + 1) / shuffledQuestions.length) * 100);
@@ -892,6 +1077,9 @@
             document.getElementById('progress-bar').style.width = progressPercentage + '%';
         }
 
+        /**
+         * Redémarre le quiz
+         */
         function restartQuiz() {
             document.getElementById('results-container').classList.remove('show');
             document.getElementById('quiz-container').classList.remove('hidden');
@@ -899,6 +1087,7 @@
             initQuiz();
         }
 
+        // Initialisation au chargement de la page
         document.addEventListener('DOMContentLoaded', initQuiz);
     </script>
 </body>
