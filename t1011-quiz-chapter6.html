@@ -149,6 +149,260 @@
             // QCM
             {
                 type: 'qcm',
+                question: "Qu'est-ce que la localité temporelle en gestion de mémoire ?",
+                options: [
+                    "Les données récemment utilisées seront probablement réutilisées bientôt",
+                    "Les données proches en mémoire sont utilisées ensemble",
+                    "Les données sont stockées par ordre chronologique",
+                    "Les données changent avec le temps"
+                ],
+                correct: 0,
+                explanation: "La localité temporelle signifie que les données récemment accédées ont une forte probabilité d'être réutilisées dans un futur proche."
+            },
+            {
+                type: 'qcm',
+                question: "Qu'est-ce que la localité spatiale ?",
+                options: [
+                    "Les données changent selon l'emplacement",
+                    "Les données proches en mémoire ont tendance à être utilisées ensemble",
+                    "Les données sont réparties uniformément",
+                    "Les données occupent beaucoup d'espace"
+                ],
+                correct: 1,
+                explanation: "La localité spatiale signifie que si on accède à une adresse mémoire, on a de fortes chances d'accéder aux adresses voisines."
+            },
+            {
+                type: 'qcm',
+                question: "Dans l'algorithme FIFO de remplacement de pages, quelle page est remplacée ?",
+                options: [
+                    "La plus récente",
+                    "La plus ancienne (chargée depuis le plus longtemps)",
+                    "La plus grande",
+                    "La plus utilisée"
+                ],
+                correct: 1,
+                explanation: "FIFO (First In First Out) : la page la plus ancienne, chargée depuis le plus longtemps, est la première remplacée."
+            },
+            {
+                type: 'qcm',
+                question: "Dans l'algorithme LRU, quelle page est choisie comme victime ?",
+                options: [
+                    "La plus ancienne",
+                    "La plus récente",
+                    "La moins récemment utilisée",
+                    "La plus fréquemment utilisée"
+                ],
+                correct: 2,
+                explanation: "LRU (Least Recently Used) : on remplace la page qui n'a pas été référencée depuis le plus longtemps."
+            },
+            {
+                type: 'qcm',
+                question: "Quel algorithme de remplacement utilise un pointeur géré par addition modulo ?",
+                options: ["Optimal", "LRU", "FIFO", "Aléatoire"],
+                correct: 2,
+                explanation: "FIFO utilise un pointeur simple géré par addition modulo le nombre d'emplacements, ce qui le rend très simple à implémenter."
+            },
+            {
+                type: 'qcm',
+                question: "Pourquoi l'algorithme 'Optimal' est-il théorique et inutilisable ?",
+                options: [
+                    "Il est trop lent",
+                    "Il nécessite de connaître toute la chaîne de référence à l'avance",
+                    "Il est trop complexe",
+                    "Il utilise trop de mémoire"
+                ],
+                correct: 1,
+                explanation: "L'algorithme Optimal nécessite de connaître à l'avance TOUT ce qui va se passer (chaîne de référence complète), ce qui est impossible en pratique."
+            },
+            {
+                type: 'qcm',
+                question: "Dans la gestion par segmentation, qu'est-ce qu'un segment peut contenir ?",
+                options: [
+                    "Uniquement du code",
+                    "Code, données, pile ou tas selon sa fonction",
+                    "Uniquement des données",
+                    "Des pages"
+                ],
+                correct: 1,
+                explanation: "Un segment est un bloc fonctionnel : segment de code, de données, de pile (paramètres) ou de tas (allocations dynamiques)."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle est la taille typique d'une page en pagination ?",
+                options: ["1 Ko", "4 Ko", "16 Ko", "64 Ko"],
+                correct: 1,
+                explanation: "Les pages ont typiquement une taille fixe de 4 Ko (4096 octets = 2^12), facilitant la gestion et le découpage de la mémoire."
+            },
+            {
+                type: 'qcm',
+                question: "Quel mécanisme permet de savoir si une page est en mémoire centrale ou sur le disque ?",
+                options: [
+                    "Le registre du CPU",
+                    "Le bit de présence dans la table des pages",
+                    "Le compteur ordinal",
+                    "Le cache"
+                ],
+                correct: 1,
+                explanation: "La table des pages contient un bit de présence : 1 = page en mémoire centrale, 0 = page sur le disque (swap)."
+            },
+            {
+                type: 'qcm',
+                question: "Que se passe-t-il lors d'un défaut de page ?",
+                options: [
+                    "Le programme s'arrête",
+                    "La page est chargée depuis le disque vers la mémoire centrale",
+                    "La page est supprimée",
+                    "Le CPU redémarre"
+                ],
+                correct: 1,
+                explanation: "Un défaut de page déclenche le chargement de la page manquante depuis le disque (swap) vers la mémoire centrale."
+            },
+
+            // QRM
+            {
+                type: 'qrm',
+                question: "Quels sont les avantages de l'algorithme FIFO ? (Plusieurs réponses)",
+                options: [
+                    "Très simple à implémenter",
+                    "Utilise un pointeur avec addition modulo",
+                    "Tient compte de la localité",
+                    "Pas de registres nécessaires",
+                    "Meilleure performance"
+                ],
+                correct: [0, 1, 3],
+                explanation: "FIFO : simple, pointeur modulo, pas de registres. MAIS ne tient pas compte de la localité et n'a pas les meilleures performances."
+            },
+            {
+                type: 'qrm',
+                question: "Quels sont les avantages de l'algorithme LRU ? (Plusieurs réponses)",
+                options: [
+                    "Respecte la propriété de localité",
+                    "Meilleures performances que FIFO",
+                    "Simple à implémenter",
+                    "Nécessite des registres pour mémoriser l'utilisation",
+                    "Choisit la page la moins récemment utilisée"
+                ],
+                correct: [0, 1, 3, 4],
+                explanation: "LRU : respecte la localité, meilleures performances, utilise des registres, choisit la page la moins récente. MAIS est plus complexe que FIFO."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles sont les étapes de traduction d'une adresse virtuelle ? (Plusieurs réponses)",
+                options: [
+                    "Extraire le numéro de page des bits de poids fort",
+                    "Consulter la table des pages",
+                    "Vérifier le bit de présence",
+                    "Récupérer le numéro de page physique",
+                    "Construire l'adresse physique avec le déplacement"
+                ],
+                correct: [0, 1, 2, 3, 4],
+                explanation: "Traduction complète : extraire n° page → table → bit présence → n° physique → adresse physique = n° physique + déplacement."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles sont les composantes d'un programme segmenté ? (Plusieurs réponses)",
+                options: [
+                    "Segment de code (instructions)",
+                    "Segment de données (variables globales)",
+                    "Segment de pile (paramètres)",
+                    "Segment de tas (allocations dynamiques)",
+                    "Segment de cache"
+                ],
+                correct: [0, 1, 2, 3],
+                explanation: "Programme segmenté : code (instructions), données (variables), pile (paramètres), tas (malloc/allocations). Pas de segment de cache."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles affirmations sur la pagination sont correctes ? (Plusieurs réponses)",
+                options: [
+                    "Mécanisme matériel transparent",
+                    "Pages de taille fixe (ex: 4 Ko)",
+                    "Permet la mémoire virtuelle",
+                    "Pages de taille variable",
+                    "Peut avoir des défauts de page"
+                ],
+                correct: [0, 1, 2, 4],
+                explanation: "Pagination : matérielle, transparente, taille fixe, mémoire virtuelle, défauts de page possibles. Les pages ne sont PAS de taille variable."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles affirmations sur la segmentation sont correctes ? (Plusieurs réponses)",
+                options: [
+                    "Segments de taille variable",
+                    "Découpage logique visible du programmeur",
+                    "Taille peut varier pendant l'exécution",
+                    "Segments de taille fixe",
+                    "Utilise base + déplacement"
+                ],
+                correct: [0, 1, 2, 4],
+                explanation: "Segmentation : taille variable, logique visible, peut varier en exécution, base+déplacement. Pas de taille fixe."
+            },
+
+            // Fill
+            {
+                type: 'fill',
+                question: "FIFO signifie First In _______ Out.",
+                answer: ["First", "first"],
+                explanation: "FIFO = First In First Out : premier entré, premier sorti."
+            },
+            {
+                type: 'fill',
+                question: "LRU signifie Least _______ Used.",
+                answer: ["Recently", "recently"],
+                explanation: "LRU = Least Recently Used : moins récemment utilisé."
+            },
+            {
+                type: 'fill',
+                question: "La localité _______ signifie que les données récemment utilisées seront probablement réutilisées.",
+                answer: ["temporelle", "Temporelle"],
+                explanation: "La localité temporelle concerne le temps : ce qui a été utilisé récemment sera probablement réutilisé bientôt."
+            },
+            {
+                type: 'fill',
+                question: "La localité _______ signifie que les données proches en mémoire sont utilisées ensemble.",
+                answer: ["spatiale", "Spatiale"],
+                explanation: "La localité spatiale concerne l'espace : les adresses mémoire proches sont souvent accédées ensemble."
+            },
+            {
+                type: 'fill',
+                question: "L'algorithme _______ nécessite de connaître toute la chaîne de référence à l'avance.",
+                answer: ["Optimal", "optimal"],
+                explanation: "L'algorithme Optimal est théorique car il nécessite de connaître l'avenir, ce qui est impossible en pratique."
+            },
+            {
+                type: 'fill',
+                question: "Un _______ de page se produit quand la page demandée n'est pas en mémoire centrale.",
+                answer: ["défaut", "defaut"],
+                explanation: "Un défaut de page déclenche le chargement de la page depuis le swap vers la RAM."
+            },
+            {
+                type: 'fill',
+                question: "La _______ des pages contient la correspondance entre pages virtuelles et pages physiques.",
+                answer: ["table", "Table"],
+                explanation: "La table des pages fait la traduction adresse logique → adresse physique."
+            },
+            {
+                type: 'fill',
+                question: "Dans la segmentation, le segment de _______ stocke les paramètres des fonctions.",
+                answer: ["pile", "Pile", "stack"],
+                explanation: "Le segment pile (stack) gère les appels de fonctions et le passage de paramètres."
+            },
+            {
+                type: 'fill',
+                question: "Le segment de _______ contient les allocations dynamiques (malloc).",
+                answer: ["tas", "Tas", "heap"],
+                explanation: "Le segment tas (heap) contient les allocations dynamiques effectuées pendant l'exécution."
+            },
+            {
+                type: 'fill',
+                question: "L'algorithme LRU mémorise pour chaque page le moment de sa dernière utilisation dans un _______.",
+                answer: ["registre", "Registre"],
+                explanation: "LRU utilise des registres pour mémoriser l'historique d'utilisation de chaque page."
+            }
+        ];
+            // QCM
+            {
+                type: 'qcm',
                 question: "Quel composant de l'Unité de Commande contient l'adresse de la prochaine instruction à exécuter ?",
                 options: ["Registre d'instruction", "Décodeur", "Compteur ordinal", "Séquenceur"],
                 correct: 2,
