@@ -146,6 +146,235 @@
 
     <script>
         const questionsBank = [
+            // QCM - Supports Magnétiques P1
+            {
+                type: 'qcm',
+                question: "Quel fut le premier disque dur commercialisé par IBM en 1956 ?",
+                options: ["ENIAC", "RAMAC 305", "EDVAC", "Mark 1"],
+                correct: 1,
+                explanation: "Le RAMAC 305 (Random Access Method of Accounting And Control) fut le premier disque dur commercialisé en 1956 avec 5 Mo de capacité."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle était la capacité du RAMAC 305 ?",
+                options: ["500 Ko", "5 Mo", "50 Mo", "500 Mo"],
+                correct: 1,
+                explanation: "Le RAMAC 305 (1956) avait une capacité de 5 mégaoctets, ce qui était révolutionnaire pour l'époque."
+            },
+            {
+                type: 'qcm',
+                question: "Quelles substances ferromagnétiques sont principalement utilisées dans les supports magnétiques ?",
+                options: [
+                    "Fer, Nickel, Cobalt",
+                    "Cuivre, Zinc, Aluminium",
+                    "Or, Argent, Platine",
+                    "Carbone, Silicium, Phosphore"
+                ],
+                correct: 0,
+                explanation: "Les substances ferromagnétiques utilisées sont principalement le Fer, le Nickel et le Cobalt pour leur propriété d'aimantation résiduelle."
+            },
+            {
+                type: 'qcm',
+                question: "Qu'est-ce que l'aimantation rémanente (ou résiduelle) ?",
+                options: [
+                    "L'aimantation temporaire",
+                    "L'aimantation qui reste après retrait du champ magnétique",
+                    "L'aimantation initiale",
+                    "L'aimantation maximale"
+                ],
+                correct: 1,
+                explanation: "L'aimantation rémanente (M+) est l'aimantation qui persiste dans le matériau après le retrait du champ magnétique externe."
+            },
+            {
+                type: 'qcm',
+                question: "Qu'est-ce que le champ coercitif (Hc) ?",
+                options: [
+                    "Le champ magnétique maximal",
+                    "Le champ nécessaire pour ramener l'aimantation à zéro",
+                    "Le champ de lecture",
+                    "Le champ d'écriture"
+                ],
+                correct: 1,
+                explanation: "Le champ coercitif (Hc) est l'intensité du champ magnétique inverse nécessaire pour ramener l'aimantation à zéro."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle est la taille actuelle approximative des particules magnétiques sur un disque dur ?",
+                options: ["25 nm", "250 nm sur 30 nm", "2500 nm", "25 µm"],
+                correct: 1,
+                explanation: "Les particules magnétiques actuelles mesurent environ 250 nanomètres sur 30 nanomètres de hauteur."
+            },
+            {
+                type: 'qcm',
+                question: "Quel phénomène physique limite la miniaturisation des particules magnétiques ?",
+                options: [
+                    "La surchauffe",
+                    "Le superparamagnétisme",
+                    "L'oxydation",
+                    "La conductivité"
+                ],
+                correct: 1,
+                explanation: "Le superparamagnétisme : quand deux particules aux polarités contraires sont trop proches, il peut y avoir des interférences et inversions spontanées de polarité."
+            },
+            {
+                type: 'qcm',
+                question: "Qu'est-ce que la technologie 'Pixie Dust' (AFC - Anti-Ferromagnetically Coupled) ?",
+                options: [
+                    "Un nouveau type de tête de lecture",
+                    "Un revêtement de 3 atomes de ruthénium entre 2 couches magnétiques",
+                    "Un type de disque optique",
+                    "Un algorithme de compression"
+                ],
+                correct: 1,
+                explanation: "Pixie Dust (2001) : revêtement de 3 atomes de ruthénium entre 2 couches magnétiques, permettant d'atteindre 25,7 Gbits/pouce² et jusqu'à 400 Gbits/pouce²."
+            },
+            {
+                type: 'qcm',
+                question: "Quel type de tête a été introduit par IBM en 1991 ?",
+                options: [
+                    "Tête inductive",
+                    "Tête magnéto-résistance (MR)",
+                    "Tête laser",
+                    "Tête optique"
+                ],
+                correct: 1,
+                explanation: "La tête magnéto-résistance (MR) d'IBM (1991) observe les variations de résistance causées par le champ magnétique, donnant un signal plus fort et clair."
+            },
+            {
+                type: 'qcm',
+                question: "Pourquoi la tête MR (magnéto-résistance) nécessite-t-elle DEUX têtes ?",
+                options: [
+                    "Pour aller plus vite",
+                    "Elle ne fonctionne qu'en lecture, il faut une tête séparée pour l'écriture",
+                    "Pour la redondance",
+                    "Pour le refroidissement"
+                ],
+                correct: 1,
+                explanation: "La tête MR ne fonctionne qu'en LECTURE. Il faut donc une seconde tête pour l'ÉCRITURE."
+            },
+            {
+                type: 'qcm',
+                question: "Qu'est-ce que la tête GMR introduite par IBM en 1997 ?",
+                options: [
+                    "Giant Magnetic Recorder",
+                    "Giant Magneto Resistive (résistance géante)",
+                    "Global Memory Reader",
+                    "Graphic Memory Recorder"
+                ],
+                correct: 1,
+                explanation: "GMR (Giant Magneto Resistive) : effet découvert en 1988, changements de résistance considérables dans des couches alternées de métaux. Plus petit que la MR classique."
+            },
+
+            // QRM
+            {
+                type: 'qrm',
+                question: "Quels sont les modes d'enregistrement magnétique ? (Plusieurs réponses)",
+                options: [
+                    "Enregistrement longitudinal",
+                    "Enregistrement perpendiculaire",
+                    "Enregistrement diagonal",
+                    "Enregistrement circulaire",
+                    "Enregistrement spiralé"
+                ],
+                correct: [0, 1],
+                explanation: "Les deux principaux modes d'enregistrement sont : longitudinal (parallèle à la surface) et perpendiculaire (vertical, perpendiculaire à la surface)."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles sont les caractéristiques du cycle d'hystérésis ? (Plusieurs réponses)",
+                options: [
+                    "Caractérise les milieux magnétisables",
+                    "Détermine la taille des aiguilles",
+                    "Indique l'aimantation rémanente",
+                    "Indique le champ coercitif",
+                    "Mesure la température"
+                ],
+                correct: [0, 1, 2, 3],
+                explanation: "Le cycle d'hystérésis caractérise le matériau magnétisable : taille des aiguilles, aimantation rémanente, champ coercitif. Pas de mesure de température."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles technologies de têtes ont été développées ? (Dans l'ordre chronologique)",
+                options: [
+                    "Tête inductive en Ferrite (1996)",
+                    "Tête magnéto-résistance MR (1991)",
+                    "Tête magnéto-résistance géante GMR (1997)",
+                    "Tête laser HAMR",
+                    "Tête optique"
+                ],
+                correct: [1, 0, 2],
+                explanation: "Ordre chronologique : MR (1991) → Inductive Ferrite (1996) → GMR (1997). HAMR est plus récent mais pas dans cette liste historique précise."
+            },
+            {
+                type: 'qrm',
+                question: "Quels sont les problèmes de la miniaturisation des particules magnétiques ? (Plusieurs réponses)",
+                options: [
+                    "Superparamagnétisme",
+                    "Interférences entre particules proches",
+                    "Inversions spontanées de polarité",
+                    "Surchauffe excessive",
+                    "Trop rapide"
+                ],
+                correct: [0, 1, 2],
+                explanation: "Miniaturisation : cause le superparamagnétisme, des interférences entre particules trop proches, et des inversions spontanées. Pas de problème de surchauffe ou vitesse."
+            },
+
+            // Fill
+            {
+                type: 'fill',
+                question: "Le premier disque dur commercialisé par IBM en 1956 s'appelait le _______ 305.",
+                answer: ["RAMAC", "Ramac", "ramac"],
+                explanation: "RAMAC 305 = Random Access Method of Accounting And Control (1956, 5 Mo)."
+            },
+            {
+                type: 'fill',
+                question: "Les trois principales substances ferromagnétiques sont le Fer, le Nickel et le _______.",
+                answer: ["Cobalt", "cobalt"],
+                explanation: "Fer, Nickel et Cobalt sont les trois principales substances ferromagnétiques utilisées."
+            },
+            {
+                type: 'fill',
+                question: "L'aimantation _______ est celle qui reste après retrait du champ magnétique.",
+                answer: ["rémanente", "remanente", "résiduelle", "residuelle"],
+                explanation: "L'aimantation rémanente (ou résiduelle) persiste après le retrait du champ magnétique externe."
+            },
+            {
+                type: 'fill',
+                question: "Le phénomène qui limite la miniaturisation des particules magnétiques s'appelle le _______.",
+                answer: ["superparamagnétisme", "Superparamagnétisme"],
+                explanation: "Le superparamagnétisme cause des inversions spontanées de polarité quand les particules sont trop petites et proches."
+            },
+            {
+                type: 'fill',
+                question: "La technologie Pixie Dust utilise un revêtement de 3 atomes de _______.",
+                answer: ["ruthénium", "Ruthénium"],
+                explanation: "Pixie Dust (AFC - 2001) : 3 atomes de ruthénium entre 2 couches magnétiques."
+            },
+            {
+                type: 'fill',
+                question: "La tête _______ (1991) observe les variations de résistance mais ne fonctionne qu'en lecture.",
+                answer: ["MR", "magnéto-résistance", "magneto-resistance"],
+                explanation: "La tête MR (Magnéto-Résistance, 1991) fonctionne uniquement en lecture, nécessitant une tête séparée pour l'écriture."
+            },
+            {
+                type: 'fill',
+                question: "GMR signifie Giant Magneto _______.",
+                answer: ["Resistive", "resistive", "Résistive", "resistive"],
+                explanation: "GMR = Giant Magneto Resistive (résistance géante), technologie IBM de 1997."
+            },
+            {
+                type: 'fill',
+                question: "L'enregistrement _______ oriente l'aimantation parallèlement à la surface du disque.",
+                answer: ["longitudinal", "Longitudinal"],
+                explanation: "L'enregistrement longitudinal oriente l'aimantation horizontalement (parallèle à la surface)."
+            },
+            {
+                type: 'fill',
+                question: "L'enregistrement _______ oriente l'aimantation verticalement par rapport à la surface.",
+                answer: ["perpendiculaire", "Perpendiculaire"],
+                explanation: "L'enregistrement perpendiculaire (PRM) oriente l'aimantation verticalement, permettant de meilleures densités."
+            }
+        ];
             // QCM
             {
                 type: 'qcm',
