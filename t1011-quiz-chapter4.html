@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Chapitre 9 - Supports Magnétiques P2 | T1011</title>
+    <title>Quiz Chapitre 4 - Mémoire Introduction | T1011</title>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -91,8 +91,8 @@
             <div class="header-left">
                 <a href="index.html" class="back-btn">←</a>
                 <div class="header-title">
-                    <h1>Chapitre 9 - Supports Magnétiques P2</h1>
-                    <p>CD, DVD, Blu-ray, technologies optiques</p>
+                    <h1>Chapitre 4 - Mémoire Introduction</h1>
+                    <p>RAM, ROM, SRAM, DRAM, Flash</p>
                 </div>
             </div>
             <div class="header-score">
@@ -146,249 +146,202 @@
 
     <script>
         const questionsBank = [
-            // QCM - Supports Magnétiques P2  
+            // QCM - Mémoire Introduction
             {
                 type: 'qcm',
-                question: "Que signifie FM dans le contexte des modes de codage magnétique ?",
-                options: [
-                    "Fast Memory",
-                    "Frequency Modulation (Modulation de Fréquence)",
-                    "Full Magnetic",
-                    "Fixed Memory"
-                ],
+                question: "Quelle est la caractéristique principale des mémoires ROM ?",
+                options: ["Volatiles et modifiables", "Non volatiles et en lecture seule", "Volatiles et rapides", "Non volatiles et modifiables"],
                 correct: 1,
-                explanation: "FM = Frequency Modulation (Modulation de Fréquence), un mode de codage où il y a une transition de synchronisation (horloge) et une transition pour les 1."
+                explanation: "ROM (Read Only Memory) : mémoire non volatile (garde les données sans alimentation) et en lecture seule (non modifiable)."
             },
             {
                 type: 'qcm',
-                question: "Dans le codage FM, quand y a-t-il une transition ?",
-                options: [
-                    "Uniquement pour les 1",
-                    "Transition de synchronisation + transition pour les 1",
-                    "Uniquement pour les 0",
-                    "Pour les 0 et les 1"
-                ],
+                question: "Que signifie RAM ?",
+                options: ["Read Access Memory", "Random Access Memory", "Rapid Access Memory", "Read Alterable Memory"],
                 correct: 1,
-                explanation: "FM : il y a toujours une transition de synchronisation (horloge), PLUS une transition supplémentaire pour encoder un 1."
+                explanation: "RAM signifie Random Access Memory (mémoire à accès aléatoire), permettant de lire et écrire à volonté."
             },
             {
                 type: 'qcm',
-                question: "Que signifie MFM ?",
-                options: [
-                    "Magnetic Fast Memory",
-                    "Modified Frequency Modulation (Modulation de Fréquence Modifiée)",
-                    "Maximum File Memory",
-                    "Multi Format Memory"
-                ],
+                question: "Quelle est la cellule de base d'une mémoire DRAM ?",
+                options: ["Transistor simple", "Condensateur", "Bascule à 6 transistors", "Diode"],
                 correct: 1,
-                explanation: "MFM = Modified Frequency Modulation (Modulation de Fréquence Modifiée), amélioration du FM."
+                explanation: "La DRAM utilise l'effet capacitif du transistor (condensateur) qui se charge/décharge pour stocker l'information."
             },
             {
                 type: 'qcm',
-                question: "Dans le codage MFM, quand y a-t-il une transition d'horloge ?",
-                options: [
-                    "Toujours",
-                    "Jamais",
-                    "Uniquement SI deux 0 se suivent",
-                    "Uniquement pour les 1"
-                ],
+                question: "Combien de transistors composent une cellule de SRAM ?",
+                options: ["1 transistor", "2 transistors", "6 transistors", "12 transistors"],
                 correct: 2,
-                explanation: "MFM : transition pour les 1 + transition d'horloge QUE SI deux 0 se suivent. Cela double la densité apparente (impression que horloge x2)."
+                explanation: "La SRAM utilise une bascule composée de 6 transistors, créant deux états stables sans besoin de rafraîchissement."
             },
             {
                 type: 'qcm',
-                question: "Que signifie RLL ?",
+                question: "Pourquoi la DRAM nécessite-t-elle un rafraîchissement ?",
                 options: [
-                    "Read Long Line",
-                    "Run Length Limited (Longueur de plage limitée)",
-                    "Rapid Load Logic",
-                    "Random Logic Length"
+                    "Pour éviter la surchauffe",
+                    "Car la charge du condensateur diminue avec le temps",
+                    "Pour synchroniser avec le CPU",
+                    "Pour économiser l'énergie"
                 ],
                 correct: 1,
-                explanation: "RLL = Run Length Limited (Longueur de plage limitée), technique de codage plus efficace que MFM."
+                explanation: "Le condensateur de la DRAM perd sa charge avec le temps, il faut donc le recharger régulièrement (toutes les 15ns environ)."
             },
             {
                 type: 'qcm',
-                question: "Que signifie 'RLL 2,7' ?",
+                question: "Quelle est la tension de fonctionnement de la DDR3 ?",
+                options: ["2,5V", "1,8V", "1,35V", "1,2V"],
+                correct: 2,
+                explanation: "La DDR3 fonctionne à 1,35-1,5V, permettant une réduction de consommation de 40% par rapport à la DDR2 (1,8V)."
+            },
+            {
+                type: 'qcm',
+                question: "Combien de mots par lecture la DDR2 peut-elle transférer ?",
+                options: ["2 mots", "4 mots", "8 mots", "16 mots"],
+                correct: 1,
+                explanation: "La DDR2 (2005) transfère 4 mots par lecture, contre 2 pour la DDR et 8 pour la DDR3."
+            },
+            {
+                type: 'qcm',
+                question: "Que signifie SDRAM ?",
+                options: ["Super Dynamic RAM", "Synchronous Dynamic RAM", "Static Dynamic RAM", "Serial Dynamic RAM"],
+                correct: 1,
+                explanation: "SDRAM = Synchronous Dynamic RAM (1997), synchronisée avec la fréquence du processeur pour éliminer les délais d'attente."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle est l'utilité de la CMOS RAM ?",
                 options: [
-                    "2 Go à 7 Go",
-                    "Minimum 2 zéros, maximum 7 zéros entre deux transitions",
-                    "2 têtes, 7 plateaux",
-                    "Version 2.7"
+                    "Stocker le système d'exploitation",
+                    "Conserver la configuration du BIOS",
+                    "Accélérer le processeur",
+                    "Gérer la mémoire cache"
                 ],
                 correct: 1,
-                explanation: "RLL 2,7 signifie : minimum 2 zéros et maximum 7 zéros consécutifs entre deux transitions magnétiques."
+                explanation: "La CMOS RAM conserve la configuration du BIOS grâce à une pile (durée ~5 ans). Si déchargée, l'ordinateur demande date/heure."
             },
             {
                 type: 'qcm',
-                question: "Qu'est-ce que le PRML ?",
+                question: "Pourquoi la mémoire graphique doit-elle permettre la lecture ET l'écriture simultanées ?",
                 options: [
-                    "Partial Response Maximum Likelihood",
-                    "Primary Read Memory Logic",
-                    "Parallel RAM Memory Link",
-                    "Protected Read Magnetic Layer"
-                ],
-                correct: 0,
-                explanation: "PRML = Partial Response Maximum Likelihood, technologie permettant d'augmenter la densité de 40%."
-            },
-            {
-                type: 'qcm',
-                question: "Comment sont organisées les pistes sur un disque dur ?",
-                options: [
-                    "En spirale",
-                    "En cercles concentriques",
-                    "En lignes parallèles",
-                    "En damier"
+                    "Pour économiser de l'énergie",
+                    "Le processeur graphique écrit pendant que le RAMDAC lit pour l'affichage",
+                    "Pour augmenter la vitesse",
+                    "C'est une obligation technique"
                 ],
                 correct: 1,
-                explanation: "Les pistes sont circulaires et concentriques (cercles les uns dans les autres), contrairement aux CD qui utilisent une spirale."
-            },
-            {
-                type: 'qcm',
-                question: "Qu'est-ce que la vitesse angulaire constante (CAV) ?",
-                options: [
-                    "La vitesse de lecture varie",
-                    "Le disque tourne à vitesse constante (même vitesse angulaire)",
-                    "La vitesse augmente vers l'extérieur",
-                    "La vitesse diminue vers l'intérieur"
-                ],
-                correct: 1,
-                explanation: "CAV (Constant Angular Velocity) : le disque tourne à vitesse angulaire constante, mais la vitesse linéaire varie selon le rayon."
-            },
-            {
-                type: 'qcm',
-                question: "Avec la CAV, où est la densité linéaire (bits par pouce) maximale ?",
-                options: [
-                    "Sur les pistes extérieures",
-                    "Sur les pistes intérieures",
-                    "Partout pareille",
-                    "Au milieu"
-                ],
-                correct: 1,
-                explanation: "Avec CAV, la densité linéaire (bits/pouce) est maximale sur les pistes intérieures (plus courtes), permettant un débit constant."
+                explanation: "Le GPU écrit les données pendant que le RAMDAC lit constamment pour afficher à l'écran. La DRAM classique ne permet PAS cela."
             },
 
             // QRM
             {
                 type: 'qrm',
-                question: "Quelles sont les caractéristiques du codage FM ? (Plusieurs réponses)",
+                question: "Quelles sont les caractéristiques des mémoires vives (RAM) ? (Plusieurs réponses)",
                 options: [
-                    "Transition de synchronisation (horloge)",
-                    "Transition pour les 1",
-                    "Transition uniquement si deux 0 se suivent",
-                    "Densité plus faible que MFM",
-                    "Premier mode de codage simple"
+                    "Peuvent être lues ou écrites à volonté",
+                    "Servent de mémoire de travail",
+                    "S'effacent si non alimentées (volatiles)",
+                    "Temps d'accès rapide",
+                    "Non volatiles"
                 ],
-                correct: [0, 1, 3, 4],
-                explanation: "FM : transition d'horloge systématique + transition pour 1, densité faible, mode simple. La condition '2 zéros' est pour MFM."
+                correct: [0, 1, 2, 3],
+                explanation: "Les RAM sont : lecture/écriture, mémoire de travail, volatiles (s'effacent sans alimentation), et rapides. Elles ne sont PAS non volatiles."
             },
             {
                 type: 'qrm',
-                question: "Quelles sont les améliorations du MFM par rapport au FM ? (Plusieurs réponses)",
+                question: "Quelles affirmations sont vraies concernant la SRAM ? (Plusieurs réponses)",
                 options: [
-                    "Transition pour les 1",
-                    "Transition d'horloge QUE SI deux 0 se suivent",
-                    "Double la densité apparente",
-                    "Toujours une transition d'horloge",
-                    "Meilleure efficacité"
+                    "Composée de 6 transistors (bascule)",
+                    "Pas besoin de rafraîchissement",
+                    "Plus chère que la DRAM",
+                    "Prend 6x plus de place que la DRAM",
+                    "Nécessite un rafraîchissement constant"
                 ],
-                correct: [0, 1, 2, 4],
-                explanation: "MFM : garde transition pour 1, mais horloge QUE si 2 zéros consécutifs, doublant la densité. Plus efficace que FM. Pas de transition systématique."
+                correct: [0, 1, 2, 3],
+                explanation: "La SRAM utilise une bascule à 6 transistors, ne nécessite pas de rafraîchissement, est plus chère et occupe 6x plus d'espace que la DRAM."
             },
             {
                 type: 'qrm',
-                question: "Quelles sont les variantes de RLL ? (Plusieurs réponses)",
+                question: "Quels sont les inconvénients de la DRAM ? (Plusieurs réponses)",
                 options: [
-                    "RLL 2,7",
-                    "RLL 3,9 (Advanced RLL)",
-                    "RLL 1,5",
-                    "RLL 4,8",
-                    "RLL 0,1"
-                ],
-                correct: [0, 1],
-                explanation: "Les principales variantes sont RLL 2,7 (standard) et RLL 3,9 (ARLL - Advanced, moins fiable, obsolète)."
-            },
-            {
-                type: 'qrm',
-                question: "Quelles sont les caractéristiques constructives des disques durs ? (Plusieurs réponses)",
-                options: [
-                    "Pistes circulaires concentriques",
-                    "Vitesse angulaire constante (CAV)",
-                    "Densité variable selon la piste",
-                    "Pistes en spirale",
-                    "Débit de lecture/écriture constant"
-                ],
-                correct: [0, 1, 2, 4],
-                explanation: "Disques durs : pistes concentriques, CAV, densité variable, débit constant. Les pistes en spirale sont pour les CD/DVD."
-            },
-            {
-                type: 'qrm',
-                question: "Quels sont les types de supports magnétiques ? (Plusieurs réponses)",
-                options: [
-                    "Disques souples (floppy disk) en mylar",
-                    "Disques durs en aluminium",
-                    "Bandes magnétiques",
-                    "CD-ROM",
-                    "SSD"
+                    "Nécessite un rafraîchissement régulier",
+                    "Lecture destructive",
+                    "Pas de lecture et écriture simultanées (sauf VRAM)",
+                    "Plus chère que la SRAM",
+                    "Très lente"
                 ],
                 correct: [0, 1, 2],
-                explanation: "Supports magnétiques : disquettes (mylar), disques durs (aluminium), bandes. CD-ROM est optique, SSD est électronique (flash)."
+                explanation: "La DRAM nécessite un rafraîchissement, a une lecture destructive (doit recharger après lecture), et ne permet pas lecture/écriture simultanées. Elle est moins chère que la SRAM."
+            },
+            {
+                type: 'qrm',
+                question: "Quelle est l'évolution chronologique des DDR ? (Ordre correct)",
+                options: [
+                    "DDR (2003) - 2 mots/lecture - 2,5V",
+                    "DDR2 (2005) - 4 mots/lecture - 1,8V",
+                    "DDR3 (2007) - 8 mots/lecture - 1,35V",
+                    "DDR4 (2015) - 1,2V",
+                    "DDR5 (2021) - 1,1V"
+                ],
+                correct: [0, 1, 2, 3, 4],
+                explanation: "L'évolution DDR : 2003 (2 mots, 2,5V) → 2005 (4 mots, 1,8V) → 2007 (8 mots, 1,35V) → 2015 (1,2V) → 2021 (1,1V), avec réduction progressive de consommation."
+            },
+            {
+                type: 'qrm',
+                question: "Que contient le BIOS ? (Plusieurs réponses)",
+                options: [
+                    "Programme du BIOS stocké en EEPROM",
+                    "Configuration du BIOS stockée en CMOS RAM",
+                    "Le système d'exploitation",
+                    "Possibilité de 'flasher' le BIOS",
+                    "Données volatiles uniquement"
+                ],
+                correct: [0, 1, 3],
+                explanation: "Le BIOS comprend : le programme (EEPROM), la configuration (CMOS RAM avec pile), et peut être flashé. Il ne contient pas l'OS."
             },
 
-            // Fill
+            // Fill in the blank
             {
                 type: 'fill',
-                question: "FM signifie Frequency _______ (Modulation de Fréquence).",
-                answer: ["Modulation", "modulation"],
-                explanation: "FM = Frequency Modulation, premier mode de codage magnétique simple."
+                question: "RAM signifie Random _______ Memory.",
+                answer: ["Access", "access"],
+                explanation: "RAM = Random Access Memory (mémoire à accès aléatoire)."
             },
             {
                 type: 'fill',
-                question: "MFM signifie Modified _______ Modulation.",
-                answer: ["Frequency", "frequency"],
-                explanation: "MFM = Modified Frequency Modulation, amélioration du FM avec densité doublée."
+                question: "La DRAM utilise un _______ comme cellule de base pour stocker l'information.",
+                answer: ["condensateur", "Condensateur"],
+                explanation: "La DRAM utilise l'effet capacitif du transistor (condensateur) qui se charge/décharge."
             },
             {
                 type: 'fill',
-                question: "RLL signifie Run _______ Limited.",
-                answer: ["Length", "length"],
-                explanation: "RLL = Run Length Limited (longueur de plage limitée), codage plus efficace."
+                question: "La SRAM est composée d'une bascule à _______ transistors.",
+                answer: ["6", "six"],
+                explanation: "Une cellule SRAM utilise une bascule à 6 transistors créant deux états stables."
             },
             {
                 type: 'fill',
-                question: "Dans RLL 2,7, il y a minimum _______ zéros et maximum 7 zéros entre transitions.",
-                answer: ["2", "deux"],
-                explanation: "RLL 2,7 : minimum 2 zéros, maximum 7 zéros consécutifs entre deux transitions."
+                question: "La DRAM nécessite un _______ régulier car la charge diminue avec le temps.",
+                answer: ["rafraîchissement", "rafraichissement", "refresh"],
+                explanation: "Le rafraîchissement (refresh) recharge les condensateurs de la DRAM toutes les 15ns environ."
             },
             {
                 type: 'fill',
-                question: "PRML signifie Partial Response Maximum _______.",
-                answer: ["Likelihood", "likelihood"],
-                explanation: "PRML = Partial Response Maximum Likelihood, augmente la densité de 40%."
+                question: "SDRAM signifie _______ Dynamic RAM.",
+                answer: ["Synchronous", "synchronous"],
+                explanation: "SDRAM = Synchronous Dynamic RAM, synchronisée avec la fréquence du processeur."
             },
             {
                 type: 'fill',
-                question: "Les pistes sur un disque dur sont _______ et concentriques.",
-                answer: ["circulaires", "Circulaires"],
-                explanation: "Les pistes sont circulaires et concentriques (cercles dans cercles), pas en spirale comme les CD."
+                question: "La DDR3 consomme environ _______V.",
+                answer: ["1.35", "1,35", "1.5", "1,5"],
+                explanation: "La DDR3 fonctionne à 1,35-1,5V, soit une réduction de 40% par rapport à la DDR2."
             },
             {
                 type: 'fill',
-                question: "CAV signifie Constant _______ Velocity.",
-                answer: ["Angular", "angular"],
-                explanation: "CAV = Constant Angular Velocity (vitesse angulaire constante)."
-            },
-            {
-                type: 'fill',
-                question: "Les disques souples (floppy) sont faits de _______, les disques durs d'aluminium.",
-                answer: ["mylar", "Mylar"],
-                explanation: "Disquettes : mylar (matériau souple). Disques durs : feuilles d'aluminium (rigides)."
-            },
-            {
-                type: 'fill',
-                question: "Avec la CAV, la densité linéaire maximale se trouve sur les pistes _______.",
-                answer: ["intérieures", "internes", "intérieure", "interne"],
-                explanation: "Les pistes intérieures sont plus courtes, donc la densité linéaire (bits/pouce) y est maximale."
+                question: "La mémoire _______ RAM conserve la configuration du BIOS grâce à une pile.",
+                answer: ["CMOS", "cmos"],
+                explanation: "La CMOS RAM conserve les paramètres du BIOS. Pile déchargée → perte date/heure."
             },
             // QCM
             {
@@ -840,8 +793,8 @@
             const xpEarned = score * 10;
             
             const progress = JSON.parse(localStorage.getItem('t1011-quiz-progress') || '{}');
-            if (!progress.chapter9 || percentage > (progress.chapter9.score || 0)) {
-                progress.chapter9 = {
+            if (!progress.chapter4 || percentage > (progress.chapter4.score || 0)) {
+                progress.chapter4 = {
                     completed: percentage >= 60,
                     score: percentage,
                     xp: xpEarned,
