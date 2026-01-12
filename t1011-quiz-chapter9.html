@@ -89,7 +89,7 @@
     <div class="container">
         <div class="header">
             <div class="header-left">
-                <a href="t1011-quiz-index.html" class="back-btn">←</a>
+                <a href="index.html" class="back-btn">←</a>
                 <div class="header-title">
                     <h1>Chapitre 9 - Supports Magnétiques P2</h1>
                     <p>CD, DVD, Blu-ray, technologies optiques</p>
@@ -389,9 +389,9 @@
                 question: "Avec la CAV, la densité linéaire maximale se trouve sur les pistes _______.",
                 answer: ["intérieures", "internes", "intérieure", "interne"],
                 explanation: "Les pistes intérieures sont plus courtes, donc la densité linéaire (bits/pouce) y est maximale."
-            }
-        ];
-            // QCM
+            },
+            
+            // QCM - Chapitre CPU
             {
                 type: 'qcm',
                 question: "Quel composant de l'Unité de Commande contient l'adresse de la prochaine instruction à exécuter ?",
@@ -817,11 +817,9 @@
         function nextQuestion() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
-            setTimeout(() => {
-                currentQuestionIndex++;
-                displayQuestion();
-                updateProgress();
-            }, 1500);
+            currentQuestionIndex++;
+            displayQuestion();
+            updateProgress();
         }
 
         function previousQuestion() {
@@ -835,9 +833,7 @@
         function finishQuiz() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
-            setTimeout(() => {
-                showResults();
-            }, 1500);
+            showResults();
         }
 
         function showResults() {
