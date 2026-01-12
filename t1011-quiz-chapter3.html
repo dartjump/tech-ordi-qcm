@@ -89,10 +89,10 @@
     <div class="container">
         <div class="header">
             <div class="header-left">
-                <a href="t1011-quiz-index.html" class="back-btn">←</a>
+                <a href="index.html" class="back-btn">←</a>
                 <div class="header-title">
-                    <h1>Chapitre 2 - Unité Centrale</h1>
-                    <p>CPU, UC, UAL et Bus</p>
+                    <h1>Chapitre 3 - Microprocesseur</h1>
+                    <p>Intel, AMD, Socket, Horloge</p>
                 </div>
             </div>
             <div class="header-score">
@@ -149,276 +149,246 @@
             // QCM
             {
                 type: 'qcm',
-                question: "Quel composant de l'Unité de Commande contient l'adresse de la prochaine instruction à exécuter ?",
-                options: ["Registre d'instruction", "Décodeur", "Compteur ordinal", "Séquenceur"],
+                question: "En quelle année Intel a-t-il créé le premier microprocesseur, le 4004 ?",
+                options: ["1969", "1971", "1973", "1975"],
+                correct: 1,
+                explanation: "Le premier microprocesseur Intel 4004 a été créé en 1971. Il possédait un bus de données de 4 bits et fonctionnait à 108 kHz."
+            },
+            {
+                type: 'qcm',
+                question: "Combien de transistors contenait le premier microprocesseur Intel 4004 ?",
+                options: ["300", "2300", "5000", "10000"],
+                correct: 1,
+                explanation: "Le Intel 4004 contenait 2300 transistors, ce qui était révolutionnaire pour l'époque (1971)."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle est la largeur du bus de données du Intel 8088 ?",
+                options: ["4 bits", "8 bits", "16 bits", "32 bits"],
+                correct: 1,
+                explanation: "Le 8088 possède un bus de données externe de 8 bits, tandis que le 8086 a un bus de 16 bits. Le bus interne était identique (16 bits)."
+            },
+            {
+                type: 'qcm',
+                question: "Combien de transistors contenait le Intel 8086 ?",
+                options: ["2300", "15000", "29000", "50000"],
                 correct: 2,
-                explanation: "Le compteur ordinal (ou Program Counter) contient l'adresse de la prochaine instruction à exécuter."
+                explanation: "Le Intel 8086 contenait environ 29000 transistors, gravés en technologie 3 µm."
             },
             {
                 type: 'qcm',
-                question: "Que signifie CPU ?",
-                options: ["Computer Processing Unit", "Central Processing Unit", "Central Program Unit", "Computer Program Unit"],
-                correct: 1,
-                explanation: "CPU signifie Central Processing Unit (Unité Centrale de Traitement en français)."
-            },
-            {
-                type: 'qcm',
-                question: "Quel composant interprète l'instruction contenue dans le registre d'instruction ?",
-                options: ["Le séquenceur", "Le décodeur", "Le compteur ordinal", "L'UAL"],
-                correct: 1,
-                explanation: "Le décodeur interprète l'instruction pour déterminer quelle opération effectuer et comment aller chercher les opérandes."
-            },
-            {
-                type: 'qcm',
-                question: "Quels sont les deux champs qui composent une instruction ?",
-                options: [
-                    "Code instruction et code données",
-                    "Code opération et code opérande",
-                    "Code source et code destination",
-                    "Code registre et code mémoire"
-                ],
-                correct: 1,
-                explanation: "Une instruction est composée de deux champs : le code opération (définit l'action) et le code opérande (définit les paramètres/adresses)."
-            },
-            {
-                type: 'qcm',
-                question: "Quel composant génère les microcommandes pour piloter les autres entités du µP ?",
-                options: ["Le décodeur", "Le séquenceur", "Le registre d'état", "Le compteur ordinal"],
-                correct: 1,
-                explanation: "Le séquenceur génère une séquence de microcommandes rythmées par l'horloge pour piloter les composants du µP."
-            },
-            {
-                type: 'qcm',
-                question: "Que fait l'UAL (ALU) à la fin d'une opération en cas de débordement ?",
-                options: [
-                    "Elle arrête le processeur",
-                    "Elle met le bit OF (OverFlow) du registre d'état à 1",
-                    "Elle efface le résultat",
-                    "Elle déclenche une interruption"
-                ],
-                correct: 1,
-                explanation: "En cas de débordement (résultat trop grand), l'UAL met le bit OF (OverFlow) du registre d'état à 1 pour signaler le problème."
-            },
-            {
-                type: 'qcm',
-                question: "Comment s'appelle le bus qui véhicule les instructions ET les données entre les composants ?",
-                options: ["Bus d'adresses", "Bus de données", "Bus de commandes", "Bus de contrôle"],
-                correct: 1,
-                explanation: "Le bus de données (Data Bus) sert au transfert des informations, que ce soient des instructions ou des données."
-            },
-            {
-                type: 'qcm',
-                question: "Quelle est la particularité du bus de données ?",
-                options: [
-                    "Il est unidirectionnel",
-                    "Il est bidirectionnel",
-                    "Il ne transporte que des adresses",
-                    "Il fonctionne à sens unique"
-                ],
-                correct: 1,
-                explanation: "Le bus de données est bidirectionnel car les informations peuvent circuler dans les deux sens : UC → mémoire et mémoire → UC."
-            },
-            {
-                type: 'qcm',
-                question: "Avec un bus d'adresse de 16 bits, combien de mémoire peut-on adresser directement ?",
-                options: ["16 Ko", "64 Ko", "256 Ko", "1 Mo"],
-                correct: 1,
-                explanation: "Avec 16 bits on peut obtenir 2^16 = 65536 combinaisons = 64 Ko de mémoire adressable."
-            },
-            {
-                type: 'qcm',
-                question: "Avec un bus d'adresse de 32 bits, quelle est la taille maximale de mémoire adressable ?",
-                options: ["1 Go", "2 Go", "4 Go", "8 Go"],
+                question: "Avec un bus d'adresse de 20 bits (Intel 8086), quelle est la capacité d'adressage maximale ?",
+                options: ["64 Ko", "256 Ko", "1 Mo", "4 Mo"],
                 correct: 2,
-                explanation: "Un bus d'adresse de 32 bits permet d'adresser 2^32 octets = 4 Go de mémoire physique."
+                explanation: "Avec 20 bits d'adresse : 2^20 = 1 Mo de mémoire adressable maximum."
             },
             {
                 type: 'qcm',
-                question: "Quel composant du CPU est composé de circuits logiques comme des additionneurs et comparateurs ?",
-                options: ["L'UC", "L'UAL", "Le décodeur", "Le séquenceur"],
-                correct: 1,
-                explanation: "L'UAL (Unité Arithmétique et Logique) est composée de circuits logiques tels que additionneurs, comparateurs, etc."
-            },
-            {
-                type: 'qcm',
-                question: "D'où l'UAL reçoit-elle ses opérandes (données à manipuler) ?",
-                options: [
-                    "Du séquenceur",
-                    "Du bus des données",
-                    "Du registre d'instruction",
-                    "Du compteur ordinal"
-                ],
-                correct: 1,
-                explanation: "L'UAL reçoit ses opérandes du bus des données. Ces données peuvent provenir de la mémoire ou de registres."
-            },
-            {
-                type: 'qcm',
-                question: "Quel registre mémorise les états 'particuliers' générés par une opération (retenue, débordement, etc.) ?",
-                options: ["Registre d'instruction", "Compteur ordinal", "Registre d'état", "Séquenceur"],
+                question: "Quel processeur Intel de 1982 fut le premier à pouvoir gérer le multitâche ?",
+                options: ["8086", "80186", "80286", "80386"],
                 correct: 2,
-                explanation: "Le registre d'état (PSW - Program Status Word) mémorise les états particuliers via des flags (drapeaux)."
+                explanation: "Le 80286 (1982) est le premier microprocesseur Intel à pouvoir gérer plusieurs programmes à la fois (multitâche)."
             },
             {
                 type: 'qcm',
-                question: "Que signifie le flag ZF dans le registre d'état ?",
-                options: [
-                    "Zero Flag - le résultat est nul",
-                    "Zone Flag - zone mémoire",
-                    "Zéro Force - forcer à zéro",
-                    "Zap Flag - effacer"
-                ],
-                correct: 0,
-                explanation: "ZF (Zero Flag) indique que le résultat de la dernière opération est nul (égal à zéro)."
+                question: "Quel processeur Intel de 1985 fut le premier vrai 32 bits avec 4 Go d'adressage ?",
+                options: ["80286", "80386", "80486", "Pentium"],
+                correct: 1,
+                explanation: "Le 80386 (1985) est le premier processeur 32 bits complet avec un bus d'adresse de 32 bits permettant d'adresser 4 Go."
             },
             {
                 type: 'qcm',
-                question: "Dans quel sens circulent les adresses sur le bus d'adresses ?",
+                question: "Quelle innovation majeure le 80386 a-t-il introduit pour améliorer les performances ?",
+                options: ["Mémoire cache", "Pipeline", "Multi-core", "Hyper-threading"],
+                correct: 1,
+                explanation: "Le 80386 intègre l'assemblage en pipeline qui permet d'exécuter une instruction avant que l'instruction précédente ne soit terminée."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle taille de mémoire cache le 80486 intègre-t-il ?",
+                options: ["4 Ko", "8 Ko", "16 Ko", "32 Ko"],
+                correct: 1,
+                explanation: "Le 80486 (1989) intègre une mémoire cache de 8 Ko, permettant d'accroître la vitesse de traitement."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle est la fréquence maximale du Pentium III ?",
+                options: ["450 MHz", "600 MHz", "1 GHz", "2 GHz"],
+                correct: 2,
+                explanation: "Le Pentium III (1999) atteint une fréquence maximale de 1 GHz (1000 MHz)."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle est la fréquence maximale du Pentium 4 ?",
+                options: ["1 GHz", "2 GHz", "3,06 GHz", "4 GHz"],
+                correct: 2,
+                explanation: "Le Pentium 4 (2000) atteint une fréquence maximale de 3,06 GHz."
+            },
+            {
+                type: 'qcm',
+                question: "Que signifie FSB ?",
+                options: ["Fast System Bus", "Front Side Bus", "Full Speed Bus", "First Serial Bus"],
+                correct: 1,
+                explanation: "FSB signifie Front Side Bus : c'est le bus qui permet au processeur de communiquer avec le contrôleur de la mémoire centrale."
+            },
+            {
+                type: 'qcm',
+                question: "Qu'est-ce que le chipset ?",
                 options: [
-                    "Bidirectionnel",
-                    "Unidirectionnel : UC → mémoire",
-                    "Unidirectionnel : mémoire → UC",
-                    "Multi-directionnel"
+                    "Un processeur secondaire",
+                    "Un ensemble de puces gérant les flux entre le µP et les composants",
+                    "Une mémoire cache",
+                    "Un type de socket"
                 ],
                 correct: 1,
-                explanation: "Le bus d'adresses est unidirectionnel : les adresses circulent uniquement dans le sens UC → mémoire."
+                explanation: "Le chipset (ensemble de puces) gère les flux de données entre le µP et les composants de la carte mère (bus, mémoire, disque dur, etc.)."
+            },
+            {
+                type: 'qcm',
+                question: "Qu'est-ce qu'un socket ?",
+                options: [
+                    "Un type de mémoire",
+                    "Un connecteur pour interfacer le processeur avec la carte mère",
+                    "Un bus de données",
+                    "Une unité de calcul"
+                ],
+                correct: 1,
+                explanation: "Le socket (socle) est un connecteur spécifique utilisé pour interfacer le processeur avec la carte mère."
+            },
+            {
+                type: 'qcm',
+                question: "Qu'a énoncé Gordon Moore dans sa célèbre 'loi de Moore' ?",
+                options: [
+                    "La vitesse des processeurs double chaque an",
+                    "Le nombre de transistors double tous les 18 mois",
+                    "La mémoire double chaque année",
+                    "Le prix des processeurs diminue de moitié chaque an"
+                ],
+                correct: 1,
+                explanation: "La loi de Moore (révisée en 1975) postule le doublement du nombre de transistors dans les circuits intégrés tous les 18 mois."
             },
 
             // QRM
             {
                 type: 'qrm',
-                question: "Quels sont les composants de l'Unité de Commande (UC) ? (Plusieurs réponses possibles)",
+                question: "Quelles sont les principales caractéristiques d'un microprocesseur ? (Plusieurs réponses possibles)",
                 options: [
-                    "Registre d'instruction",
-                    "UAL",
-                    "Décodeur",
-                    "Séquenceur",
-                    "Registre d'état",
-                    "Compteur ordinal"
-                ],
-                correct: [0, 2, 3, 4, 5],
-                explanation: "L'UC comprend : le registre d'instruction, le décodeur, le séquenceur, le registre d'état et le compteur ordinal. L'UAL fait partie de l'unité de calcul, pas de l'UC."
-            },
-            {
-                type: 'qrm',
-                question: "Quelles sont les fonctions du CPU ? (Plusieurs réponses possibles)",
-                options: [
-                    "Acquérir et décoder les instructions",
-                    "Faire exécuter les opérations arithmétiques par l'UAL",
-                    "Gérer les adresses du programme via le compteur ordinal",
-                    "Mémoriser l'état interne via le registre d'état",
-                    "Afficher les résultats à l'écran"
+                    "Le jeu d'instructions qu'il peut exécuter",
+                    "Le nombre de transistors (complexité)",
+                    "Le nombre de bits traités simultanément",
+                    "La vitesse de l'horloge",
+                    "La couleur du boîtier"
                 ],
                 correct: [0, 1, 2, 3],
-                explanation: "Le CPU acquiert/décode les instructions, fait exécuter l'UAL, gère les adresses, mémorise l'état interne et fournit les signaux de commande. L'affichage n'est pas sa fonction."
+                explanation: "Les caractéristiques principales d'un µP sont : le jeu d'instructions, la complexité (nombre de transistors), le nombre de bits traités, et la vitesse d'horloge."
             },
             {
                 type: 'qrm',
-                question: "Quels sont les 3 bus fondamentaux du processeur ? (Plusieurs réponses possibles)",
+                question: "Quels sont les avantages de la miniaturisation du microprocesseur ? (Plusieurs réponses possibles)",
                 options: [
-                    "Bus de données",
-                    "Bus d'adresses",
-                    "Bus de commandes",
-                    "Bus de contrôle",
-                    "Bus mémoire",
-                    "Bus graphique"
+                    "Augmentation de la vitesse",
+                    "Réduction des coûts",
+                    "Amélioration de la fiabilité",
+                    "Création d'ordinateurs plus petits",
+                    "Réduction de la consommation énergétique"
+                ],
+                correct: [0, 1, 2, 3, 4],
+                explanation: "TOUS ces éléments sont des avantages de la miniaturisation : vitesse accrue (distances réduites), coûts réduits, meilleure fiabilité, ordinateurs plus petits et consommation réduite."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles affirmations sont vraies concernant le Pentium (1993) ? (Plusieurs réponses possibles)",
+                options: [
+                    "Il possède 2 caches séparés de 8 Ko chacun",
+                    "Il a 2 unités d'exécution 32 bits fonctionnant simultanément",
+                    "Il est cadencé de 60 à 200 MHz",
+                    "Il intègre un coprocesseur mathématique",
+                    "Il est 8 bits"
                 ],
                 correct: [0, 1, 2],
-                explanation: "Les 3 bus fondamentaux sont : le bus de données, le bus d'adresses et le bus de commandes (ou contrôle)."
+                explanation: "Le Pentium (1993) a 2 caches de 8 Ko (instructions et données), 2 unités d'exécution 32 bits simultanées (architecture superscalaire), et fonctionne de 60 à 200 MHz."
             },
             {
                 type: 'qrm',
-                question: "Quand le compteur ordinal est-il modifié ? (Plusieurs réponses possibles)",
+                question: "Concernant le Pentium 4, quelles affirmations sont correctes ? (Plusieurs réponses possibles)",
                 options: [
-                    "Au lancement du programme (chargement 1ère instruction)",
-                    "Lors de sauts (boucles, alternatives)",
-                    "Il est incrémenté (+1) pour passer à l'instruction suivante",
-                    "Lors d'une division par zéro",
-                    "Quand la mémoire est pleine"
+                    "Fréquence max : 3,06 GHz",
+                    "42 millions de transistors",
+                    "Bus système à 400 puis 800 MHz",
+                    "Technologie 0,18 puis 0,13 µm",
+                    "4 cœurs"
                 ],
-                correct: [0, 1, 2],
-                explanation: "Le compteur ordinal est modifié : au lancement du programme, lors de sauts, et il est incrémenté (+1) pour les instructions séquentielles."
+                correct: [0, 1, 2, 3],
+                explanation: "Le Pentium 4 atteint 3,06 GHz, contient 42 millions de transistors, a un bus à 400/800 MHz, et utilise une gravure de 0,18 puis 0,13 µm. Il n'a qu'1 seul cœur."
             },
             {
                 type: 'qrm',
-                question: "Quels flags (indicateurs) peut-on trouver dans le registre d'état ? (Plusieurs réponses possibles)",
+                question: "Quelles sont les caractéristiques du Intel 8086 ? (Plusieurs réponses possibles)",
                 options: [
-                    "CF - Carry Flag (retenue)",
-                    "ZF - Zero Flag (résultat nul)",
-                    "OF - OverFlow (débordement)",
-                    "MF - Memory Flag (mémoire)",
-                    "SF - Sign Flag (signe)"
+                    "29000 transistors",
+                    "Gravure 3 µm",
+                    "Bus d'adresse de 20 bits",
+                    "Adressage max de 1 Mo",
+                    "Bus de données externe de 8 bits"
                 ],
-                correct: [0, 1, 2, 4],
-                explanation: "Les flags incluent : CF (Carry), ZF (Zero), OF (OverFlow), SF (Sign). MF n'existe pas dans les registres d'état standards."
-            },
-            {
-                type: 'qrm',
-                question: "Que permet le bus de commandes ? (Plusieurs réponses possibles)",
-                options: [
-                    "Faire circuler les microcommandes du séquenceur",
-                    "Indiquer ce que le processeur veut faire",
-                    "Gérer les lectures et écritures",
-                    "Transporter des données",
-                    "Gérer les interruptions"
-                ],
-                correct: [0, 1, 2, 4],
-                explanation: "Le bus de commandes permet la circulation des microcommandes, indique les intentions du processeur (lecture/écriture), et gère les interruptions. Il ne transporte PAS de données."
+                correct: [0, 1, 2, 3],
+                explanation: "Le 8086 a 29000 transistors, gravure 3 µm, bus d'adresse 20 bits et adressage max 1 Mo. Son bus de données externe est de 16 bits (pas 8)."
             },
 
             // Fill in the blank
             {
                 type: 'fill',
-                question: "Le _______ _______ contient l'instruction à exécuter.",
-                answer: ["registre d'instruction", "registre instruction", "RI"],
-                explanation: "Le registre d'instruction (RI) contient l'instruction à exécuter, dont l'adresse se trouve dans le compteur ordinal."
+                question: "Le premier microprocesseur créé par Intel en 1971 était le _______.",
+                answer: ["4004", "Intel 4004"],
+                explanation: "Le Intel 4004 (1971) est le premier microprocesseur au monde, avec 2300 transistors et un bus de 4 bits."
             },
             {
                 type: 'fill',
-                question: "CPU signifie Central _______ Unit.",
-                answer: ["Processing", "processing"],
-                explanation: "CPU signifie Central Processing Unit (Unité Centrale de Traitement)."
+                question: "Le Intel 4004 possédait un bus de données de _______ bits.",
+                answer: ["4"],
+                explanation: "Le 4004 avait un bus de données de 4 bits, d'où son nom."
             },
             {
                 type: 'fill',
-                question: "Le _______ interprète l'instruction pour déterminer quelle opération effectuer.",
-                answer: ["décodeur", "Décodeur", "decodeur"],
-                explanation: "Le décodeur interprète le code opération pour savoir quelle opération effectuer et comment chercher les opérandes."
+                question: "FSB signifie Front _______ Bus.",
+                answer: ["Side", "side"],
+                explanation: "FSB = Front Side Bus, le bus qui connecte le processeur au contrôleur mémoire."
             },
             {
                 type: 'fill',
-                question: "Le _______ génère les microcommandes rythmées par l'horloge.",
-                answer: ["séquenceur", "Séquenceur", "sequenceur"],
-                explanation: "Le séquenceur génère une séquence de microcommandes chronologiques pour piloter les composants du µP."
+                question: "Le _______ est un ensemble de puces qui gère les flux entre le µP et les composants de la carte mère.",
+                answer: ["chipset", "Chipset"],
+                explanation: "Le chipset est spécifiquement conçu pour un type de µP et gère les communications via le FSB."
             },
             {
                 type: 'fill',
-                question: "L'Unité de Commande et l'Unité Arithmétique & Logique constituent l'Unité _______.",
-                answer: ["Centrale", "centrale", "CPU"],
-                explanation: "L'UC (Unité de Commande) et l'UAL forment ensemble l'Unité Centrale (CPU - Central Processing Unit)."
+                question: "Le _______ est le connecteur qui interface le processeur avec la carte mère.",
+                answer: ["socket", "Socket", "socle"],
+                explanation: "Le socket (ou socle) est le connecteur physique permettant d'installer le processeur sur la carte mère."
             },
             {
                 type: 'fill',
-                question: "Le bus de données est _______ car les informations circulent dans les deux sens.",
-                answer: ["bidirectionnel", "Bidirectionnel"],
-                explanation: "Le bus de données est bidirectionnel : les données peuvent aller de l'UC vers la mémoire et inversement."
+                question: "La loi de _______ postule le doublement du nombre de transistors tous les 18 mois.",
+                answer: ["Moore", "moore"],
+                explanation: "La loi de Moore, formulée par Gordon E. Moore, prédit le doublement des performances tous les 18 mois."
             },
             {
                 type: 'fill',
-                question: "Le bus d'adresses est _______ : les adresses ne circulent que de l'UC vers la mémoire.",
-                answer: ["unidirectionnel", "Unidirectionnel"],
-                explanation: "Le bus d'adresses est unidirectionnel car seule l'UC envoie des adresses vers la mémoire, jamais l'inverse."
+                question: "Le processeur Intel _______ de 1982 fut le premier à gérer le multitâche.",
+                answer: ["80286", "286"],
+                explanation: "Le 80286 (1982) est le premier processeur Intel capable de gérer plusieurs programmes simultanément (multitâche)."
             },
             {
                 type: 'fill',
-                question: "Le registre d'état est aussi appelé _______ (Program Status Word).",
-                answer: ["PSW", "psw"],
-                explanation: "Le registre d'état porte aussi le nom de PSW (Program Status Word) qui mémorise l'état du processeur via des flags."
+                question: "Le processeur Intel _______ de 1985 fut le premier vrai 32 bits.",
+                answer: ["80386", "386"],
+                explanation: "Le 80386 (1985) est le premier processeur Intel entièrement 32 bits avec 4 Go d'adressage."
             },
             {
                 type: 'fill',
-                question: "Le compteur ordinal est aussi appelé _______ (Program Counter).",
-                answer: ["PC", "pc"],
-                explanation: "Le compteur ordinal est aussi appelé PC (Program Counter) ou IP (Instruction Pointer)."
+                question: "Le 80486 intègre _______ Ko de mémoire cache.",
+                answer: ["8"],
+                explanation: "Le 80486 (1989) intègre une mémoire cache de 8 Ko pour améliorer les performances."
             }
         ];
 
@@ -600,8 +570,8 @@
             const xpEarned = score * 10;
             
             const progress = JSON.parse(localStorage.getItem('t1011-quiz-progress') || '{}');
-            if (!progress.chapter2 || percentage > (progress.chapter2.score || 0)) {
-                progress.chapter2 = {
+            if (!progress.chapter3 || percentage > (progress.chapter3.score || 0)) {
+                progress.chapter3 = {
                     completed: percentage >= 60,
                     score: percentage,
                     xp: xpEarned,
