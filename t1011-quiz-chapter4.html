@@ -146,6 +146,204 @@
 
     <script>
         const questionsBank = [
+            // QCM - Mémoire Introduction
+            {
+                type: 'qcm',
+                question: "Quelle est la caractéristique principale des mémoires ROM ?",
+                options: ["Volatiles et modifiables", "Non volatiles et en lecture seule", "Volatiles et rapides", "Non volatiles et modifiables"],
+                correct: 1,
+                explanation: "ROM (Read Only Memory) : mémoire non volatile (garde les données sans alimentation) et en lecture seule (non modifiable)."
+            },
+            {
+                type: 'qcm',
+                question: "Que signifie RAM ?",
+                options: ["Read Access Memory", "Random Access Memory", "Rapid Access Memory", "Read Alterable Memory"],
+                correct: 1,
+                explanation: "RAM signifie Random Access Memory (mémoire à accès aléatoire), permettant de lire et écrire à volonté."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle est la cellule de base d'une mémoire DRAM ?",
+                options: ["Transistor simple", "Condensateur", "Bascule à 6 transistors", "Diode"],
+                correct: 1,
+                explanation: "La DRAM utilise l'effet capacitif du transistor (condensateur) qui se charge/décharge pour stocker l'information."
+            },
+            {
+                type: 'qcm',
+                question: "Combien de transistors composent une cellule de SRAM ?",
+                options: ["1 transistor", "2 transistors", "6 transistors", "12 transistors"],
+                correct: 2,
+                explanation: "La SRAM utilise une bascule composée de 6 transistors, créant deux états stables sans besoin de rafraîchissement."
+            },
+            {
+                type: 'qcm',
+                question: "Pourquoi la DRAM nécessite-t-elle un rafraîchissement ?",
+                options: [
+                    "Pour éviter la surchauffe",
+                    "Car la charge du condensateur diminue avec le temps",
+                    "Pour synchroniser avec le CPU",
+                    "Pour économiser l'énergie"
+                ],
+                correct: 1,
+                explanation: "Le condensateur de la DRAM perd sa charge avec le temps, il faut donc le recharger régulièrement (toutes les 15ns environ)."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle est la tension de fonctionnement de la DDR3 ?",
+                options: ["2,5V", "1,8V", "1,35V", "1,2V"],
+                correct: 2,
+                explanation: "La DDR3 fonctionne à 1,35-1,5V, permettant une réduction de consommation de 40% par rapport à la DDR2 (1,8V)."
+            },
+            {
+                type: 'qcm',
+                question: "Combien de mots par lecture la DDR2 peut-elle transférer ?",
+                options: ["2 mots", "4 mots", "8 mots", "16 mots"],
+                correct: 1,
+                explanation: "La DDR2 (2005) transfère 4 mots par lecture, contre 2 pour la DDR et 8 pour la DDR3."
+            },
+            {
+                type: 'qcm',
+                question: "Que signifie SDRAM ?",
+                options: ["Super Dynamic RAM", "Synchronous Dynamic RAM", "Static Dynamic RAM", "Serial Dynamic RAM"],
+                correct: 1,
+                explanation: "SDRAM = Synchronous Dynamic RAM (1997), synchronisée avec la fréquence du processeur pour éliminer les délais d'attente."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle est l'utilité de la CMOS RAM ?",
+                options: [
+                    "Stocker le système d'exploitation",
+                    "Conserver la configuration du BIOS",
+                    "Accélérer le processeur",
+                    "Gérer la mémoire cache"
+                ],
+                correct: 1,
+                explanation: "La CMOS RAM conserve la configuration du BIOS grâce à une pile (durée ~5 ans). Si déchargée, l'ordinateur demande date/heure."
+            },
+            {
+                type: 'qcm',
+                question: "Pourquoi la mémoire graphique doit-elle permettre la lecture ET l'écriture simultanées ?",
+                options: [
+                    "Pour économiser de l'énergie",
+                    "Le processeur graphique écrit pendant que le RAMDAC lit pour l'affichage",
+                    "Pour augmenter la vitesse",
+                    "C'est une obligation technique"
+                ],
+                correct: 1,
+                explanation: "Le GPU écrit les données pendant que le RAMDAC lit constamment pour afficher à l'écran. La DRAM classique ne permet PAS cela."
+            },
+
+            // QRM
+            {
+                type: 'qrm',
+                question: "Quelles sont les caractéristiques des mémoires vives (RAM) ? (Plusieurs réponses)",
+                options: [
+                    "Peuvent être lues ou écrites à volonté",
+                    "Servent de mémoire de travail",
+                    "S'effacent si non alimentées (volatiles)",
+                    "Temps d'accès rapide",
+                    "Non volatiles"
+                ],
+                correct: [0, 1, 2, 3],
+                explanation: "Les RAM sont : lecture/écriture, mémoire de travail, volatiles (s'effacent sans alimentation), et rapides. Elles ne sont PAS non volatiles."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles affirmations sont vraies concernant la SRAM ? (Plusieurs réponses)",
+                options: [
+                    "Composée de 6 transistors (bascule)",
+                    "Pas besoin de rafraîchissement",
+                    "Plus chère que la DRAM",
+                    "Prend 6x plus de place que la DRAM",
+                    "Nécessite un rafraîchissement constant"
+                ],
+                correct: [0, 1, 2, 3],
+                explanation: "La SRAM utilise une bascule à 6 transistors, ne nécessite pas de rafraîchissement, est plus chère et occupe 6x plus d'espace que la DRAM."
+            },
+            {
+                type: 'qrm',
+                question: "Quels sont les inconvénients de la DRAM ? (Plusieurs réponses)",
+                options: [
+                    "Nécessite un rafraîchissement régulier",
+                    "Lecture destructive",
+                    "Pas de lecture et écriture simultanées (sauf VRAM)",
+                    "Plus chère que la SRAM",
+                    "Très lente"
+                ],
+                correct: [0, 1, 2],
+                explanation: "La DRAM nécessite un rafraîchissement, a une lecture destructive (doit recharger après lecture), et ne permet pas lecture/écriture simultanées. Elle est moins chère que la SRAM."
+            },
+            {
+                type: 'qrm',
+                question: "Quelle est l'évolution chronologique des DDR ? (Ordre correct)",
+                options: [
+                    "DDR (2003) - 2 mots/lecture - 2,5V",
+                    "DDR2 (2005) - 4 mots/lecture - 1,8V",
+                    "DDR3 (2007) - 8 mots/lecture - 1,35V",
+                    "DDR4 (2015) - 1,2V",
+                    "DDR5 (2021) - 1,1V"
+                ],
+                correct: [0, 1, 2, 3, 4],
+                explanation: "L'évolution DDR : 2003 (2 mots, 2,5V) → 2005 (4 mots, 1,8V) → 2007 (8 mots, 1,35V) → 2015 (1,2V) → 2021 (1,1V), avec réduction progressive de consommation."
+            },
+            {
+                type: 'qrm',
+                question: "Que contient le BIOS ? (Plusieurs réponses)",
+                options: [
+                    "Programme du BIOS stocké en EEPROM",
+                    "Configuration du BIOS stockée en CMOS RAM",
+                    "Le système d'exploitation",
+                    "Possibilité de 'flasher' le BIOS",
+                    "Données volatiles uniquement"
+                ],
+                correct: [0, 1, 3],
+                explanation: "Le BIOS comprend : le programme (EEPROM), la configuration (CMOS RAM avec pile), et peut être flashé. Il ne contient pas l'OS."
+            },
+
+            // Fill in the blank
+            {
+                type: 'fill',
+                question: "RAM signifie Random _______ Memory.",
+                answer: ["Access", "access"],
+                explanation: "RAM = Random Access Memory (mémoire à accès aléatoire)."
+            },
+            {
+                type: 'fill',
+                question: "La DRAM utilise un _______ comme cellule de base pour stocker l'information.",
+                answer: ["condensateur", "Condensateur"],
+                explanation: "La DRAM utilise l'effet capacitif du transistor (condensateur) qui se charge/décharge."
+            },
+            {
+                type: 'fill',
+                question: "La SRAM est composée d'une bascule à _______ transistors.",
+                answer: ["6", "six"],
+                explanation: "Une cellule SRAM utilise une bascule à 6 transistors créant deux états stables."
+            },
+            {
+                type: 'fill',
+                question: "La DRAM nécessite un _______ régulier car la charge diminue avec le temps.",
+                answer: ["rafraîchissement", "rafraichissement", "refresh"],
+                explanation: "Le rafraîchissement (refresh) recharge les condensateurs de la DRAM toutes les 15ns environ."
+            },
+            {
+                type: 'fill',
+                question: "SDRAM signifie _______ Dynamic RAM.",
+                answer: ["Synchronous", "synchronous"],
+                explanation: "SDRAM = Synchronous Dynamic RAM, synchronisée avec la fréquence du processeur."
+            },
+            {
+                type: 'fill',
+                question: "La DDR3 consomme environ _______V.",
+                answer: ["1.35", "1,35", "1.5", "1,5"],
+                explanation: "La DDR3 fonctionne à 1,35-1,5V, soit une réduction de 40% par rapport à la DDR2."
+            },
+            {
+                type: 'fill',
+                question: "La mémoire _______ RAM conserve la configuration du BIOS grâce à une pile.",
+                answer: ["CMOS", "cmos"],
+                explanation: "La CMOS RAM conserve les paramètres du BIOS. Pile déchargée → perte date/heure."
+            }
+        ];
             // QCM
             {
                 type: 'qcm',
