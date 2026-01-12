@@ -812,10 +812,17 @@
 
         function nextQuestion() {
             if (userAnswers[currentQuestionIndex] === null) return;
-            validateAnswer();
-            currentQuestionIndex++;
-            displayQuestion();
-            updateProgress();
+            
+            // Check if answer is already validated
+            if (document.querySelector('.option.disabled') || document.getElementById('fill-input')?.disabled) {
+                // Already validated, move to next question
+                currentQuestionIndex++;
+                displayQuestion();
+                updateProgress();
+            } else {
+                // First time, validate the answer
+                validateAnswer();
+            }
         }
 
         function previousQuestion() {
@@ -828,8 +835,15 @@
 
         function finishQuiz() {
             if (userAnswers[currentQuestionIndex] === null) return;
-            validateAnswer();
-            showResults();
+            
+            // Check if answer is already validated
+            if (document.querySelector('.option.disabled') || document.getElementById('fill-input')?.disabled) {
+                // Already validated, show results
+                showResults();
+            } else {
+                // First time, validate the answer
+                validateAnswer();
+            }
         }
 
         function showResults() {
