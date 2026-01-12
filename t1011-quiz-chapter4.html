@@ -89,7 +89,7 @@
     <div class="container">
         <div class="header">
             <div class="header-left">
-                <a href="t1011-quiz-index.html" class="back-btn">←</a>
+                <a href="index.html" class="back-btn">←</a>
                 <div class="header-title">
                     <h1>Chapitre 4 - Mémoire Introduction</h1>
                     <p>RAM, ROM, SRAM, DRAM, Flash</p>
@@ -342,8 +342,8 @@
                 question: "La mémoire _______ RAM conserve la configuration du BIOS grâce à une pile.",
                 answer: ["CMOS", "cmos"],
                 explanation: "La CMOS RAM conserve les paramètres du BIOS. Pile déchargée → perte date/heure."
-            }
-        ];
+            },
+    
             // QCM
             {
                 type: 'qcm',
@@ -770,11 +770,9 @@
         function nextQuestion() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
-            setTimeout(() => {
-                currentQuestionIndex++;
-                displayQuestion();
-                updateProgress();
-            }, 1500);
+            currentQuestionIndex++;
+            displayQuestion();
+            updateProgress();
         }
 
         function previousQuestion() {
@@ -788,9 +786,7 @@
         function finishQuiz() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
-            setTimeout(() => {
-                showResults();
-            }, 1500);
+            showResults();
         }
 
         function showResults() {
