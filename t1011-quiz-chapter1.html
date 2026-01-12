@@ -541,7 +541,7 @@
             </div>
 
             <div class="buttons-container">
-                <button class="btn btn-secondary" onclick="window.location.href='t1011-quiz-index.html'">Retour</button>
+                <button class="btn btn-secondary" onclick="window.location.href='index.html'">Retour</button>
                 <button class="btn btn-primary" onclick="restartQuiz()">Recommencer</button>
             </div>
         </div>
@@ -978,11 +978,9 @@
             
             validateAnswer();
             
-            setTimeout(() => {
-                currentQuestionIndex++;
-                displayQuestion();
-                updateProgress();
-            }, 1500);
+            currentQuestionIndex++;
+            displayQuestion();
+            updateProgress();
         }
 
         /**
@@ -1003,10 +1001,7 @@
             if (userAnswers[currentQuestionIndex] === null) return;
             
             validateAnswer();
-            
-            setTimeout(() => {
-                showResults();
-            }, 1500);
+            showResults();
         }
 
         /**
