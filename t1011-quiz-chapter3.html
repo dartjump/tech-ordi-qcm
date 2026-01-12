@@ -89,7 +89,7 @@
     <div class="container">
         <div class="header">
             <div class="header-left">
-                <a href="t1011-quiz-index.html" class="back-btn">←</a>
+                <a href="index.html" class="back-btn">←</a>
                 <div class="header-title">
                     <h1>Chapitre 3 - Microprocesseur</h1>
                     <p>Intel, AMD, Socket, Horloge</p>
@@ -542,11 +542,9 @@
         function nextQuestion() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
-            setTimeout(() => {
-                currentQuestionIndex++;
-                displayQuestion();
-                updateProgress();
-            }, 1500);
+            currentQuestionIndex++;
+            displayQuestion();
+            updateProgress();
         }
 
         function previousQuestion() {
@@ -560,9 +558,7 @@
         function finishQuiz() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
-            setTimeout(() => {
-                showResults();
-            }, 1500);
+            showResults();
         }
 
         function showResults() {
