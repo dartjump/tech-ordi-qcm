@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Chapitre 4 - Mémoire Introduction | T1011</title>
+    <title>Quiz Chapitre 9 - Supports Magnétiques P2 | T1011</title>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -89,10 +89,10 @@
     <div class="container">
         <div class="header">
             <div class="header-left">
-                <a href="t1011-quiz-index.html" class="back-btn">←</a>
+                <a href="index.html" class="back-btn">←</a>
                 <div class="header-title">
-                    <h1>Chapitre 4 - Mémoire Introduction</h1>
-                    <p>RAM, ROM, SRAM, DRAM, Flash</p>
+                    <h1>Chapitre 9 - Supports Magnétiques P2</h1>
+                    <p>CD, DVD, Blu-ray, technologies optiques</p>
                 </div>
             </div>
             <div class="header-score">
@@ -138,7 +138,7 @@
             </div>
 
             <div class="buttons-container">
-                <button class="btn btn-secondary" onclick="window.location.href='t1011-quiz-index.html'">Retour</button>
+                <button class="btn btn-secondary" onclick="window.location.href='index.html'">Retour</button>
                 <button class="btn btn-primary" onclick="restartQuiz()">Recommencer</button>
             </div>
         </div>
@@ -146,6 +146,250 @@
 
     <script>
         const questionsBank = [
+            // QCM - Supports Magnétiques P2  
+            {
+                type: 'qcm',
+                question: "Que signifie FM dans le contexte des modes de codage magnétique ?",
+                options: [
+                    "Fast Memory",
+                    "Frequency Modulation (Modulation de Fréquence)",
+                    "Full Magnetic",
+                    "Fixed Memory"
+                ],
+                correct: 1,
+                explanation: "FM = Frequency Modulation (Modulation de Fréquence), un mode de codage où il y a une transition de synchronisation (horloge) et une transition pour les 1."
+            },
+            {
+                type: 'qcm',
+                question: "Dans le codage FM, quand y a-t-il une transition ?",
+                options: [
+                    "Uniquement pour les 1",
+                    "Transition de synchronisation + transition pour les 1",
+                    "Uniquement pour les 0",
+                    "Pour les 0 et les 1"
+                ],
+                correct: 1,
+                explanation: "FM : il y a toujours une transition de synchronisation (horloge), PLUS une transition supplémentaire pour encoder un 1."
+            },
+            {
+                type: 'qcm',
+                question: "Que signifie MFM ?",
+                options: [
+                    "Magnetic Fast Memory",
+                    "Modified Frequency Modulation (Modulation de Fréquence Modifiée)",
+                    "Maximum File Memory",
+                    "Multi Format Memory"
+                ],
+                correct: 1,
+                explanation: "MFM = Modified Frequency Modulation (Modulation de Fréquence Modifiée), amélioration du FM."
+            },
+            {
+                type: 'qcm',
+                question: "Dans le codage MFM, quand y a-t-il une transition d'horloge ?",
+                options: [
+                    "Toujours",
+                    "Jamais",
+                    "Uniquement SI deux 0 se suivent",
+                    "Uniquement pour les 1"
+                ],
+                correct: 2,
+                explanation: "MFM : transition pour les 1 + transition d'horloge QUE SI deux 0 se suivent. Cela double la densité apparente (impression que horloge x2)."
+            },
+            {
+                type: 'qcm',
+                question: "Que signifie RLL ?",
+                options: [
+                    "Read Long Line",
+                    "Run Length Limited (Longueur de plage limitée)",
+                    "Rapid Load Logic",
+                    "Random Logic Length"
+                ],
+                correct: 1,
+                explanation: "RLL = Run Length Limited (Longueur de plage limitée), technique de codage plus efficace que MFM."
+            },
+            {
+                type: 'qcm',
+                question: "Que signifie 'RLL 2,7' ?",
+                options: [
+                    "2 Go à 7 Go",
+                    "Minimum 2 zéros, maximum 7 zéros entre deux transitions",
+                    "2 têtes, 7 plateaux",
+                    "Version 2.7"
+                ],
+                correct: 1,
+                explanation: "RLL 2,7 signifie : minimum 2 zéros et maximum 7 zéros consécutifs entre deux transitions magnétiques."
+            },
+            {
+                type: 'qcm',
+                question: "Qu'est-ce que le PRML ?",
+                options: [
+                    "Partial Response Maximum Likelihood",
+                    "Primary Read Memory Logic",
+                    "Parallel RAM Memory Link",
+                    "Protected Read Magnetic Layer"
+                ],
+                correct: 0,
+                explanation: "PRML = Partial Response Maximum Likelihood, technologie permettant d'augmenter la densité de 40%."
+            },
+            {
+                type: 'qcm',
+                question: "Comment sont organisées les pistes sur un disque dur ?",
+                options: [
+                    "En spirale",
+                    "En cercles concentriques",
+                    "En lignes parallèles",
+                    "En damier"
+                ],
+                correct: 1,
+                explanation: "Les pistes sont circulaires et concentriques (cercles les uns dans les autres), contrairement aux CD qui utilisent une spirale."
+            },
+            {
+                type: 'qcm',
+                question: "Qu'est-ce que la vitesse angulaire constante (CAV) ?",
+                options: [
+                    "La vitesse de lecture varie",
+                    "Le disque tourne à vitesse constante (même vitesse angulaire)",
+                    "La vitesse augmente vers l'extérieur",
+                    "La vitesse diminue vers l'intérieur"
+                ],
+                correct: 1,
+                explanation: "CAV (Constant Angular Velocity) : le disque tourne à vitesse angulaire constante, mais la vitesse linéaire varie selon le rayon."
+            },
+            {
+                type: 'qcm',
+                question: "Avec la CAV, où est la densité linéaire (bits par pouce) maximale ?",
+                options: [
+                    "Sur les pistes extérieures",
+                    "Sur les pistes intérieures",
+                    "Partout pareille",
+                    "Au milieu"
+                ],
+                correct: 1,
+                explanation: "Avec CAV, la densité linéaire (bits/pouce) est maximale sur les pistes intérieures (plus courtes), permettant un débit constant."
+            },
+
+            // QRM
+            {
+                type: 'qrm',
+                question: "Quelles sont les caractéristiques du codage FM ? (Plusieurs réponses)",
+                options: [
+                    "Transition de synchronisation (horloge)",
+                    "Transition pour les 1",
+                    "Transition uniquement si deux 0 se suivent",
+                    "Densité plus faible que MFM",
+                    "Premier mode de codage simple"
+                ],
+                correct: [0, 1, 3, 4],
+                explanation: "FM : transition d'horloge systématique + transition pour 1, densité faible, mode simple. La condition '2 zéros' est pour MFM."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles sont les améliorations du MFM par rapport au FM ? (Plusieurs réponses)",
+                options: [
+                    "Transition pour les 1",
+                    "Transition d'horloge QUE SI deux 0 se suivent",
+                    "Double la densité apparente",
+                    "Toujours une transition d'horloge",
+                    "Meilleure efficacité"
+                ],
+                correct: [0, 1, 2, 4],
+                explanation: "MFM : garde transition pour 1, mais horloge QUE si 2 zéros consécutifs, doublant la densité. Plus efficace que FM. Pas de transition systématique."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles sont les variantes de RLL ? (Plusieurs réponses)",
+                options: [
+                    "RLL 2,7",
+                    "RLL 3,9 (Advanced RLL)",
+                    "RLL 1,5",
+                    "RLL 4,8",
+                    "RLL 0,1"
+                ],
+                correct: [0, 1],
+                explanation: "Les principales variantes sont RLL 2,7 (standard) et RLL 3,9 (ARLL - Advanced, moins fiable, obsolète)."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles sont les caractéristiques constructives des disques durs ? (Plusieurs réponses)",
+                options: [
+                    "Pistes circulaires concentriques",
+                    "Vitesse angulaire constante (CAV)",
+                    "Densité variable selon la piste",
+                    "Pistes en spirale",
+                    "Débit de lecture/écriture constant"
+                ],
+                correct: [0, 1, 2, 4],
+                explanation: "Disques durs : pistes concentriques, CAV, densité variable, débit constant. Les pistes en spirale sont pour les CD/DVD."
+            },
+            {
+                type: 'qrm',
+                question: "Quels sont les types de supports magnétiques ? (Plusieurs réponses)",
+                options: [
+                    "Disques souples (floppy disk) en mylar",
+                    "Disques durs en aluminium",
+                    "Bandes magnétiques",
+                    "CD-ROM",
+                    "SSD"
+                ],
+                correct: [0, 1, 2],
+                explanation: "Supports magnétiques : disquettes (mylar), disques durs (aluminium), bandes. CD-ROM est optique, SSD est électronique (flash)."
+            },
+
+            // Fill
+            {
+                type: 'fill',
+                question: "FM signifie Frequency _______ (Modulation de Fréquence).",
+                answer: ["Modulation", "modulation"],
+                explanation: "FM = Frequency Modulation, premier mode de codage magnétique simple."
+            },
+            {
+                type: 'fill',
+                question: "MFM signifie Modified _______ Modulation.",
+                answer: ["Frequency", "frequency"],
+                explanation: "MFM = Modified Frequency Modulation, amélioration du FM avec densité doublée."
+            },
+            {
+                type: 'fill',
+                question: "RLL signifie Run _______ Limited.",
+                answer: ["Length", "length"],
+                explanation: "RLL = Run Length Limited (longueur de plage limitée), codage plus efficace."
+            },
+            {
+                type: 'fill',
+                question: "Dans RLL 2,7, il y a minimum _______ zéros et maximum 7 zéros entre transitions.",
+                answer: ["2", "deux"],
+                explanation: "RLL 2,7 : minimum 2 zéros, maximum 7 zéros consécutifs entre deux transitions."
+            },
+            {
+                type: 'fill',
+                question: "PRML signifie Partial Response Maximum _______.",
+                answer: ["Likelihood", "likelihood"],
+                explanation: "PRML = Partial Response Maximum Likelihood, augmente la densité de 40%."
+            },
+            {
+                type: 'fill',
+                question: "Les pistes sur un disque dur sont _______ et concentriques.",
+                answer: ["circulaires", "Circulaires"],
+                explanation: "Les pistes sont circulaires et concentriques (cercles dans cercles), pas en spirale comme les CD."
+            },
+            {
+                type: 'fill',
+                question: "CAV signifie Constant _______ Velocity.",
+                answer: ["Angular", "angular"],
+                explanation: "CAV = Constant Angular Velocity (vitesse angulaire constante)."
+            },
+            {
+                type: 'fill',
+                question: "Les disques souples (floppy) sont faits de _______, les disques durs d'aluminium.",
+                answer: ["mylar", "Mylar"],
+                explanation: "Disquettes : mylar (matériau souple). Disques durs : feuilles d'aluminium (rigides)."
+            },
+            {
+                type: 'fill',
+                question: "Avec la CAV, la densité linéaire maximale se trouve sur les pistes _______.",
+                answer: ["intérieures", "internes", "intérieure", "interne"],
+                explanation: "Les pistes intérieures sont plus courtes, donc la densité linéaire (bits/pouce) y est maximale."
+            },
             // QCM
             {
                 type: 'qcm',
@@ -572,11 +816,9 @@
         function nextQuestion() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
-            setTimeout(() => {
-                currentQuestionIndex++;
-                displayQuestion();
-                updateProgress();
-            }, 1500);
+            currentQuestionIndex++;
+            displayQuestion();
+            updateProgress();
         }
 
         function previousQuestion() {
@@ -590,9 +832,7 @@
         function finishQuiz() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
-            setTimeout(() => {
-                showResults();
-            }, 1500);
+            showResults();
         }
 
         function showResults() {
@@ -600,8 +840,8 @@
             const xpEarned = score * 10;
             
             const progress = JSON.parse(localStorage.getItem('t1011-quiz-progress') || '{}');
-            if (!progress.chapter4 || percentage > (progress.chapter4.score || 0)) {
-                progress.chapter4 = {
+            if (!progress.chapter9 || percentage > (progress.chapter9.score || 0)) {
+                progress.chapter9 = {
                     completed: percentage >= 60,
                     score: percentage,
                     xp: xpEarned,
