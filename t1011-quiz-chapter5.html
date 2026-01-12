@@ -89,7 +89,7 @@
     <div class="container">
         <div class="header">
             <div class="header-left">
-                <a href="t1011-quiz-index.html" class="back-btn">←</a>
+                <a href="index.html" class="back-btn">←</a>
                 <div class="header-title">
                     <h1>Chapitre 5 - Mémoire Adressage</h1>
                     <p>Adresse physique, virtuelle, décodage</p>
@@ -385,8 +385,8 @@
                 question: "Dans un programme segmenté, la _______ stocke les paramètres des fonctions.",
                 answer: ["pile", "Pile", "stack"],
                 explanation: "Le segment pile (stack) est utilisé pour le passage de paramètres et les appels de fonctions."
-            }
-        ];
+            },
+        
             // QCM
             {
                 type: 'qcm',
@@ -813,11 +813,9 @@
         function nextQuestion() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
-            setTimeout(() => {
-                currentQuestionIndex++;
-                displayQuestion();
-                updateProgress();
-            }, 1500);
+            currentQuestionIndex++;
+            displayQuestion();
+            updateProgress();
         }
 
         function previousQuestion() {
@@ -831,9 +829,7 @@
         function finishQuiz() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
-            setTimeout(() => {
-                showResults();
-            }, 1500);
+            showResults();
         }
 
         function showResults() {
