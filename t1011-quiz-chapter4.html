@@ -6,7 +6,6 @@
     <title>Quiz Chapitre 4 - Mémoire Introduction | T1011</title>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Styles identiques aux chapitres précédents */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --bg-primary: #09090b; --bg-secondary: #18181b; --bg-tertiary: #27272a; --bg-card: linear-gradient(145deg, rgba(39, 39, 42, 0.5), rgba(24, 24, 27, 0.8)); --border: rgba(63, 63, 70, 0.5); --border-hover: rgba(113, 113, 122, 0.5); --text-primary: #fafafa; --text-secondary: #a1a1aa; --text-muted: #71717a; --accent-1: #3b82f6; --accent-2: #8b5cf6; --success: #22c55e; --danger: #ef4444; --gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6); }
         body { font-family: 'Sora', sans-serif; background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; -webkit-font-smoothing: antialiased; }
@@ -67,40 +66,79 @@
         .result-stat-value.primary { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .result-stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
         .hidden { display: none !important; }
-        @media (max-width: 768px) { .header { flex-direction: column; align-items: flex-start; } .header-score { width: 100%; } .buttons-container { flex-direction: column; } .results-stats { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .header { flex-direction: column; align-items: flex-start; }
+            .header-score { width: 100%; }
+            .buttons-container { flex-direction: column; }
+            .results-stats { grid-template-columns: repeat(2, 1fr); }
+        }
     </style>
 </head>
 <body>
     <div class="bg-gradient"></div>
     <div class="noise"></div>
+
     <div class="container">
         <div class="header">
             <div class="header-left">
                 <a href="index.html" class="back-btn">←</a>
-                <div class="header-title"><h1>Chapitre 4 - Mémoire Introduction</h1><p>RAM, ROM, SRAM, DRAM, Flash</p></div>
+                <div class="header-title">
+                    <h1>Chapitre 4 - Mémoire Introduction</h1>
+                    <p>RAM, ROM, SRAM, DRAM, Flash</p>
+                </div>
             </div>
-            <div class="header-score"><div class="score-value" id="current-score">0%</div><div class="score-label">Score</div></div>
+            <div class="header-score">
+                <div class="score-value" id="current-score">0%</div>
+                <div class="score-label">Score</div>
+            </div>
         </div>
+
         <div class="progress-container">
-            <div class="progress-header"><span class="progress-text">Question <span id="current-question">1</span>/<span id="total-questions">30</span></span><span class="progress-text" id="progress-percentage">0%</span></div>
-            <div class="progress-bar-bg"><div class="progress-bar" id="progress-bar"></div></div>
+            <div class="progress-header">
+                <span class="progress-text">Question <span id="current-question">1</span>/<span id="total-questions">30</span></span>
+                <span class="progress-text" id="progress-percentage">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
         </div>
+
         <div id="quiz-container"></div>
+
         <div class="results-container" id="results-container">
             <div class="results-icon" id="results-icon">🎉</div>
             <h2 class="results-title" id="results-title">Quiz terminé !</h2>
             <p class="results-score" id="results-message">Excellent travail !</p>
+            
             <div class="results-stats">
-                <div class="result-stat"><div class="result-stat-value primary" id="final-score">0%</div><div class="result-stat-label">Score Final</div></div>
-                <div class="result-stat"><div class="result-stat-value success" id="correct-answers">0</div><div class="result-stat-label">Correctes</div></div>
-                <div class="result-stat"><div class="result-stat-value danger" id="incorrect-answers">0</div><div class="result-stat-label">Incorrectes</div></div>
-                <div class="result-stat"><div class="result-stat-value primary" id="xp-earned">0</div><div class="result-stat-label">XP Gagné</div></div>
+                <div class="result-stat">
+                    <div class="result-stat-value primary" id="final-score">0%</div>
+                    <div class="result-stat-label">Score Final</div>
+                </div>
+                <div class="result-stat">
+                    <div class="result-stat-value success" id="correct-answers">0</div>
+                    <div class="result-stat-label">Correctes</div>
+                </div>
+                <div class="result-stat">
+                    <div class="result-stat-value danger" id="incorrect-answers">0</div>
+                    <div class="result-stat-label">Incorrectes</div>
+                </div>
+                <div class="result-stat">
+                    <div class="result-stat-value primary" id="xp-earned">0</div>
+                    <div class="result-stat-label">XP Gagné</div>
+                </div>
             </div>
-            <div class="buttons-container"><button class="btn btn-secondary" onclick="window.location.href='index.html'">Retour</button><button class="btn btn-primary" onclick="restartQuiz()">Recommencer</button></div>
+
+            <div class="buttons-container">
+                <button class="btn btn-secondary" onclick="window.location.href='index.html'">Retour</button>
+                <button class="btn btn-primary" onclick="restartQuiz()">Recommencer</button>
+            </div>
         </div>
     </div>
+
     <script>
         const questionsBank = [
+            // QCM - Mémoire Introduction
             { type: 'qcm', question: "Quelle est la caractéristique principale des mémoires ROM ?", options: ["Volatiles et modifiables", "Non volatiles et en lecture seule", "Volatiles et rapides", "Non volatiles et modifiables"], correct: 1, explanation: "ROM (Read Only Memory) : mémoire non volatile (garde les données sans alimentation) et en lecture seule (non modifiable)." },
             { type: 'qcm', question: "Que signifie RAM ?", options: ["Read Access Memory", "Random Access Memory", "Rapid Access Memory", "Read Alterable Memory"], correct: 1, explanation: "RAM signifie Random Access Memory (mémoire à accès aléatoire), permettant de lire et écrire à volonté." },
             { type: 'qcm', question: "Quelle est la cellule de base d'une mémoire DRAM ?", options: ["Transistor simple", "Condensateur", "Bascule à 6 transistors", "Diode"], correct: 1, explanation: "La DRAM utilise l'effet capacitif du transistor (condensateur) qui se charge/décharge pour stocker l'information." },
@@ -111,11 +149,15 @@
             { type: 'qcm', question: "Que signifie SDRAM ?", options: ["Super Dynamic RAM", "Synchronous Dynamic RAM", "Static Dynamic RAM", "Serial Dynamic RAM"], correct: 1, explanation: "SDRAM = Synchronous Dynamic RAM (1997), synchronisée avec la fréquence du processeur pour éliminer les délais d'attente." },
             { type: 'qcm', question: "Quelle est l'utilité de la CMOS RAM ?", options: ["Stocker le système d'exploitation", "Conserver la configuration du BIOS", "Accélérer le processeur", "Gérer la mémoire cache"], correct: 1, explanation: "La CMOS RAM conserve la configuration du BIOS grâce à une pile (durée ~5 ans). Si déchargée, l'ordinateur demande date/heure." },
             { type: 'qcm', question: "Pourquoi la mémoire graphique doit-elle permettre la lecture ET l'écriture simultanées ?", options: ["Pour économiser de l'énergie", "Le processeur graphique écrit pendant que le RAMDAC lit pour l'affichage", "Pour augmenter la vitesse", "C'est une obligation technique"], correct: 1, explanation: "Le GPU écrit les données pendant que le RAMDAC lit constamment pour afficher à l'écran. La DRAM classique ne permet PAS cela." },
+
+            // QRM
             { type: 'qrm', question: "Quelles sont les caractéristiques des mémoires vives (RAM) ? (Plusieurs réponses)", options: ["Peuvent être lues ou écrites à volonté", "Servent de mémoire de travail", "S'effacent si non alimentées (volatiles)", "Temps d'accès rapide", "Non volatiles"], correct: [0, 1, 2, 3], explanation: "Les RAM sont : lecture/écriture, mémoire de travail, volatiles (s'effacent sans alimentation), et rapides. Elles ne sont PAS non volatiles." },
             { type: 'qrm', question: "Quelles affirmations sont vraies concernant la SRAM ? (Plusieurs réponses)", options: ["Composée de 6 transistors (bascule)", "Pas besoin de rafraîchissement", "Plus chère que la DRAM", "Prend 6x plus de place que la DRAM", "Nécessite un rafraîchissement constant"], correct: [0, 1, 2, 3], explanation: "La SRAM utilise une bascule à 6 transistors, ne nécessite pas de rafraîchissement, est plus chère et occupe 6x plus d'espace que la DRAM." },
             { type: 'qrm', question: "Quels sont les inconvénients de la DRAM ? (Plusieurs réponses)", options: ["Nécessite un rafraîchissement régulier", "Lecture destructive", "Pas de lecture et écriture simultanées (sauf VRAM)", "Plus chère que la SRAM", "Très lente"], correct: [0, 1, 2], explanation: "La DRAM nécessite un rafraîchissement, a une lecture destructive (doit recharger après lecture), et ne permet pas lecture/écriture simultanées. Elle est moins chère que la SRAM." },
             { type: 'qrm', question: "Quelle est l'évolution chronologique des DDR ? (Ordre correct)", options: ["DDR (2003) - 2 mots/lecture - 2,5V", "DDR2 (2005) - 4 mots/lecture - 1,8V", "DDR3 (2007) - 8 mots/lecture - 1,35V", "DDR4 (2015) - 1,2V", "DDR5 (2021) - 1,1V"], correct: [0, 1, 2, 3, 4], explanation: "L'évolution DDR : 2003 (2 mots, 2,5V) → 2005 (4 mots, 1,8V) → 2007 (8 mots, 1,35V) → 2015 (1,2V) → 2021 (1,1V), avec réduction progressive de consommation." },
             { type: 'qrm', question: "Que contient le BIOS ? (Plusieurs réponses)", options: ["Programme du BIOS stocké en EEPROM", "Configuration du BIOS stockée en CMOS RAM", "Le système d'exploitation", "Possibilité de 'flasher' le BIOS", "Données volatiles uniquement"], correct: [0, 1, 3], explanation: "Le BIOS comprend : le programme (EEPROM), la configuration (CMOS RAM avec pile), et peut être flashé. Il ne contient pas l'OS." },
+
+            // Fill in the blank
             { type: 'fill', question: "RAM signifie Random _______ Memory.", answer: ["Access", "access"], explanation: "RAM = Random Access Memory (mémoire à accès aléatoire)." },
             { type: 'fill', question: "La DRAM utilise un _______ comme cellule de base pour stocker l'information.", answer: ["condensateur", "Condensateur"], explanation: "La DRAM utilise l'effet capacitif du transistor (condensateur) qui se charge/décharge." },
             { type: 'fill', question: "La SRAM est composée d'une bascule à _______ transistors.", answer: ["6", "six"], explanation: "Une cellule SRAM utilise une bascule à 6 transistors créant deux états stables." },
@@ -131,8 +173,15 @@
         let shuffledQuestions = [];
         let userAnswers = [];
 
-        function shuffleArray(array) { const newArray = [...array]; for (let i = newArray.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; } return newArray; }
-        
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
         function initQuiz() {
             shuffledQuestions = shuffleArray(questionsBank);
             currentQuestionIndex = 0;
@@ -171,27 +220,43 @@
                     </div>
                     <div class="question-text">${question.question}</div>
                     ${optionsHTML}
-                    <div class="explanation" id="explanation"><div class="explanation-title">💡 Explication</div><div class="explanation-text">${question.explanation}</div></div>
+                    <div class="explanation" id="explanation">
+                        <div class="explanation-title">💡 Explication</div>
+                        <div class="explanation-text">${question.explanation}</div>
+                    </div>
                 </div>
                 <div class="buttons-container">
                     ${currentQuestionIndex > 0 ? '<button class="btn btn-secondary" onclick="previousQuestion()">Précédent</button>' : ''}
                     <button class="btn btn-primary" id="next-btn" onclick="${currentQuestionIndex < shuffledQuestions.length - 1 ? 'nextQuestion()' : 'finishQuiz()'}" disabled>Valider</button>
                 </div>
             `;
-            if (userAnswers[currentQuestionIndex] !== null) document.getElementById('next-btn').disabled = false;
+
+            if (userAnswers[currentQuestionIndex] !== null) {
+                document.getElementById('next-btn').disabled = false;
+            }
         }
 
         function selectOption(index) {
             const question = shuffledQuestions[currentQuestionIndex];
             if (question.type === 'qcm') {
                 userAnswers[currentQuestionIndex] = [index];
-                document.querySelectorAll('.option').forEach((opt, i) => opt.classList.toggle('selected', i === index));
+                document.querySelectorAll('.option').forEach((opt, i) => {
+                    opt.classList.toggle('selected', i === index);
+                });
             } else if (question.type === 'qrm') {
-                if (!userAnswers[currentQuestionIndex]) userAnswers[currentQuestionIndex] = [];
+                if (!userAnswers[currentQuestionIndex]) {
+                    userAnswers[currentQuestionIndex] = [];
+                }
                 const answers = userAnswers[currentQuestionIndex];
                 const idx = answers.indexOf(index);
-                if (idx > -1) answers.splice(idx, 1); else answers.push(index);
-                document.querySelectorAll('.option').forEach((opt, i) => opt.classList.toggle('selected', answers.includes(i)));
+                if (idx > -1) {
+                    answers.splice(idx, 1);
+                } else {
+                    answers.push(index);
+                }
+                document.querySelectorAll('.option').forEach((opt, i) => {
+                    opt.classList.toggle('selected', answers.includes(i));
+                });
             }
             document.getElementById('next-btn').disabled = false;
         }
@@ -211,8 +276,11 @@
                 isCorrect = userAnswer[0] === question.correct;
                 document.querySelectorAll('.option').forEach((opt, i) => {
                     opt.classList.add('disabled');
-                    if (i === question.correct) opt.classList.add('correct');
-                    else if (userAnswer.includes(i)) opt.classList.add('incorrect');
+                    if (i === question.correct) {
+                        opt.classList.add('correct');
+                    } else if (userAnswer.includes(i)) {
+                        opt.classList.add('incorrect');
+                    }
                 });
             } else if (question.type === 'qrm') {
                 const sortedUser = [...userAnswer].sort();
@@ -220,15 +288,22 @@
                 isCorrect = JSON.stringify(sortedUser) === JSON.stringify(sortedCorrect);
                 document.querySelectorAll('.option').forEach((opt, i) => {
                     opt.classList.add('disabled');
-                    if (question.correct.includes(i)) opt.classList.add('correct');
-                    else if (userAnswer.includes(i)) opt.classList.add('incorrect');
+                    if (question.correct.includes(i)) {
+                        opt.classList.add('correct');
+                    } else if (userAnswer.includes(i)) {
+                        opt.classList.add('incorrect');
+                    }
                 });
             } else if (question.type === 'fill') {
                 const normalizedUser = userAnswer.toLowerCase().trim();
                 isCorrect = question.answer.some(ans => ans.toLowerCase() === normalizedUser);
                 const input = document.getElementById('fill-input');
                 input.disabled = true;
-                if (isCorrect) input.classList.add('correct'); else input.classList.add('incorrect');
+                if (isCorrect) {
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('incorrect');
+                }
             }
 
             if (isCorrect) score++;
@@ -239,13 +314,16 @@
 
         function nextQuestion() {
             if (userAnswers[currentQuestionIndex] === null) return;
-            const isValidated = document.querySelector('.option.disabled') || document.getElementById('fill-input')?.disabled;
-            const nextBtn = document.getElementById('next-btn');
             
+            const nextBtn = document.getElementById('next-btn');
+            const isValidated = document.querySelector('.option.disabled') || document.getElementById('fill-input')?.disabled;
+
             if (!isValidated) {
+                // ÉTAPE 1 : Valider
                 validateAnswer();
                 nextBtn.textContent = "Question Suivante →";
             } else {
+                // ÉTAPE 2 : Suivant
                 currentQuestionIndex++;
                 displayQuestion();
                 updateProgress();
@@ -253,18 +331,25 @@
         }
 
         function previousQuestion() {
-            if (currentQuestionIndex > 0) { currentQuestionIndex--; displayQuestion(); updateProgress(); }
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+                updateProgress();
+            }
         }
 
         function finishQuiz() {
             if (userAnswers[currentQuestionIndex] === null) return;
-            const isValidated = document.querySelector('.option.disabled') || document.getElementById('fill-input')?.disabled;
+            
             const nextBtn = document.getElementById('next-btn');
+            const isValidated = document.querySelector('.option.disabled') || document.getElementById('fill-input')?.disabled;
 
             if (!isValidated) {
+                // ÉTAPE 1 : Valider
                 validateAnswer();
                 nextBtn.textContent = "Voir les résultats 🏆";
             } else {
+                // ÉTAPE 2 : Résultats
                 showResults();
             }
         }
@@ -272,21 +357,45 @@
         function showResults() {
             const percentage = Math.round((score / shuffledQuestions.length) * 100);
             const xpEarned = score * 10;
+            
             const progress = JSON.parse(localStorage.getItem('t1011-quiz-progress') || '{}');
             if (!progress.chapter4 || percentage > (progress.chapter4.score || 0)) {
-                progress.chapter4 = { completed: percentage >= 60, score: percentage, xp: xpEarned, date: new Date().toISOString() };
+                progress.chapter4 = {
+                    completed: percentage >= 60,
+                    score: percentage,
+                    xp: xpEarned,
+                    date: new Date().toISOString()
+                };
                 localStorage.setItem('t1011-quiz-progress', JSON.stringify(progress));
             }
+
             document.getElementById('quiz-container').classList.add('hidden');
             document.querySelector('.progress-container').classList.add('hidden');
+            
             const resultsContainer = document.getElementById('results-container');
             resultsContainer.classList.add('show');
             
-            let icon = '🎉', title = 'Quiz terminé !', message = 'Excellent travail !';
-            if (percentage >= 90) { icon = '🏆'; title = 'Parfait !'; message = 'Score exceptionnel !'; }
-            else if (percentage >= 75) { icon = '🎉'; title = 'Très bien !'; message = 'Excellent score !'; }
-            else if (percentage >= 60) { icon = '✅'; title = 'Bien joué !'; message = 'Bon score !'; }
-            else { icon = '📚'; title = 'Chapitre non validé'; message = 'Il faut 60% pour valider.'; }
+            let icon = '🎉';
+            let title = 'Quiz terminé !';
+            let message = 'Excellent travail !';
+            
+            if (percentage >= 90) {
+                icon = '🏆';
+                title = 'Parfait !';
+                message = 'Score exceptionnel ! Tu maîtrises parfaitement ce chapitre !';
+            } else if (percentage >= 75) {
+                icon = '🎉';
+                title = 'Très bien !';
+                message = 'Excellent score ! Continue comme ça !';
+            } else if (percentage >= 60) {
+                icon = '✅';
+                title = 'Bien joué !';
+                message = 'Bon score ! Révise encore un peu pour viser l\'excellence.';
+            } else {
+                icon = '📚';
+                title = 'Chapitre non validé';
+                message = 'Il faut 60% pour valider. Révise le cours et réessaye !';
+            }
             
             document.getElementById('results-icon').textContent = icon;
             document.getElementById('results-title').textContent = title;
@@ -300,6 +409,7 @@
         function updateProgress() {
             const percentage = Math.round((score / shuffledQuestions.length) * 100);
             const progressPercentage = Math.round(((currentQuestionIndex + 1) / shuffledQuestions.length) * 100);
+            
             document.getElementById('current-question').textContent = currentQuestionIndex + 1;
             document.getElementById('current-score').textContent = percentage + '%';
             document.getElementById('progress-percentage').textContent = progressPercentage + '%';
