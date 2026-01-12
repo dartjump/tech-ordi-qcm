@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Chapitre 4 - Mémoire Introduction | T1011</title>
+    <title>Quiz Chapitre 5 - Mémoire Adressage | T1011</title>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -91,8 +91,8 @@
             <div class="header-left">
                 <a href="index.html" class="back-btn">←</a>
                 <div class="header-title">
-                    <h1>Chapitre 4 - Mémoire Introduction</h1>
-                    <p>RAM, ROM, SRAM, DRAM, Flash</p>
+                    <h1>Chapitre 5 - Mémoire Adressage</h1>
+                    <p>Adresse physique, virtuelle, décodage</p>
                 </div>
             </div>
             <div class="header-score">
@@ -146,204 +146,247 @@
 
     <script>
         const questionsBank = [
-            // QCM - Mémoire Introduction
+            // QCM - Adressage mémoire
             {
                 type: 'qcm',
-                question: "Quelle est la caractéristique principale des mémoires ROM ?",
-                options: ["Volatiles et modifiables", "Non volatiles et en lecture seule", "Volatiles et rapides", "Non volatiles et modifiables"],
+                question: "Quelle est la différence entre adresse logique et adresse physique ?",
+                options: [
+                    "Aucune différence",
+                    "Logique = utilisée par CPU, Physique = emplacement réel en mémoire centrale",
+                    "Logique = sur disque, Physique = en RAM",
+                    "Logique = en cache, Physique = en RAM"
+                ],
                 correct: 1,
-                explanation: "ROM (Read Only Memory) : mémoire non volatile (garde les données sans alimentation) et en lecture seule (non modifiable)."
+                explanation: "Adresse logique (ou virtuelle) : utilisée par les programmes et le CPU. Adresse physique : emplacement réel en mémoire centrale."
             },
             {
                 type: 'qcm',
-                question: "Que signifie RAM ?",
-                options: ["Read Access Memory", "Random Access Memory", "Rapid Access Memory", "Read Alterable Memory"],
+                question: "Qu'est-ce que la mémoire virtuelle ?",
+                options: [
+                    "Une mémoire plus rapide",
+                    "L'extension de la mémoire centrale en utilisant le disque dur",
+                    "Une mémoire cachée",
+                    "Une mémoire optique"
+                ],
                 correct: 1,
-                explanation: "RAM signifie Random Access Memory (mémoire à accès aléatoire), permettant de lire et écrire à volonté."
+                explanation: "La mémoire virtuelle utilise le disque dur (swap) pour étendre la capacité de la mémoire centrale quand celle-ci est insuffisante."
             },
             {
                 type: 'qcm',
-                question: "Quelle est la cellule de base d'une mémoire DRAM ?",
-                options: ["Transistor simple", "Condensateur", "Bascule à 6 transistors", "Diode"],
+                question: "Dans la pagination, comment sont organisées la mémoire centrale et le disque ?",
+                options: [
+                    "En blocs de tailles différentes",
+                    "En pages de même taille",
+                    "En segments variables",
+                    "En fichiers"
+                ],
                 correct: 1,
-                explanation: "La DRAM utilise l'effet capacitif du transistor (condensateur) qui se charge/décharge pour stocker l'information."
+                explanation: "La pagination divise la mémoire centrale ET le disque (swap) en pages de même taille pour faciliter les échanges."
             },
             {
                 type: 'qcm',
-                question: "Combien de transistors composent une cellule de SRAM ?",
-                options: ["1 transistor", "2 transistors", "6 transistors", "12 transistors"],
+                question: "Que signifie l'algorithme FIFO en gestion de mémoire ?",
+                options: ["First In First Out", "Fast In Fast Out", "Fixed In Fixed Out", "Final In Final Out"],
+                correct: 0,
+                explanation: "FIFO = First In First Out : la page la plus ancienne (chargée depuis le plus longtemps) est remplacée en premier."
+            },
+            {
+                type: 'qcm',
+                question: "Que signifie l'algorithme LRU en gestion de mémoire ?",
+                options: [
+                    "Last Recently Used",
+                    "Least Recently Used",
+                    "Last Replaced Unit",
+                    "Least Replaced Unit"
+                ],
+                correct: 1,
+                explanation: "LRU = Least Recently Used : on remplace la page qui n'a pas été utilisée depuis le plus longtemps."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle est la principale différence entre pagination et segmentation ?",
+                options: [
+                    "Pagination = tailles fixes, Segmentation = tailles variables",
+                    "Pagination = logicielle, Segmentation = matérielle",
+                    "Pagination = rapide, Segmentation = lente",
+                    "Aucune différence"
+                ],
+                correct: 0,
+                explanation: "Pagination : pages de taille fixe, mécanisme matériel transparent. Segmentation : segments de taille variable, découpage logique visible."
+            },
+            {
+                type: 'qcm',
+                question: "Dans un système avec pagination, si une page = 4 Ko (2^12), combien de bits servent au déplacement dans une adresse de 16 bits ?",
+                options: ["4 bits", "8 bits", "12 bits", "16 bits"],
                 correct: 2,
-                explanation: "La SRAM utilise une bascule composée de 6 transistors, créant deux états stables sans besoin de rafraîchissement."
+                explanation: "Page de 4 Ko = 2^12 octets, donc 12 bits pour le déplacement (offset). Les 4 bits restants (16-12) donnent le numéro de page."
             },
             {
                 type: 'qcm',
-                question: "Pourquoi la DRAM nécessite-t-elle un rafraîchissement ?",
+                question: "Qu'est-ce qu'un 'défaut de page' ?",
                 options: [
-                    "Pour éviter la surchauffe",
-                    "Car la charge du condensateur diminue avec le temps",
-                    "Pour synchroniser avec le CPU",
-                    "Pour économiser l'énergie"
+                    "Une erreur de programmation",
+                    "Quand la page demandée n'est pas en mémoire centrale",
+                    "Une page corrompue",
+                    "Une page trop grande"
                 ],
                 correct: 1,
-                explanation: "Le condensateur de la DRAM perd sa charge avec le temps, il faut donc le recharger régulièrement (toutes les 15ns environ)."
+                explanation: "Un défaut de page se produit quand le CPU demande une page qui n'est pas chargée en mémoire centrale (elle est sur le disque)."
             },
             {
                 type: 'qcm',
-                question: "Quelle est la tension de fonctionnement de la DDR3 ?",
-                options: ["2,5V", "1,8V", "1,35V", "1,2V"],
-                correct: 2,
-                explanation: "La DDR3 fonctionne à 1,35-1,5V, permettant une réduction de consommation de 40% par rapport à la DDR2 (1,8V)."
-            },
-            {
-                type: 'qcm',
-                question: "Combien de mots par lecture la DDR2 peut-elle transférer ?",
-                options: ["2 mots", "4 mots", "8 mots", "16 mots"],
-                correct: 1,
-                explanation: "La DDR2 (2005) transfère 4 mots par lecture, contre 2 pour la DDR et 8 pour la DDR3."
-            },
-            {
-                type: 'qcm',
-                question: "Que signifie SDRAM ?",
-                options: ["Super Dynamic RAM", "Synchronous Dynamic RAM", "Static Dynamic RAM", "Serial Dynamic RAM"],
-                correct: 1,
-                explanation: "SDRAM = Synchronous Dynamic RAM (1997), synchronisée avec la fréquence du processeur pour éliminer les délais d'attente."
-            },
-            {
-                type: 'qcm',
-                question: "Quelle est l'utilité de la CMOS RAM ?",
+                question: "Quelle est la fonction de la table des pages ?",
                 options: [
-                    "Stocker le système d'exploitation",
-                    "Conserver la configuration du BIOS",
-                    "Accélérer le processeur",
-                    "Gérer la mémoire cache"
+                    "Stocker les données du programme",
+                    "Traduire les adresses logiques en adresses physiques",
+                    "Gérer l'affichage graphique",
+                    "Compresser la mémoire"
                 ],
                 correct: 1,
-                explanation: "La CMOS RAM conserve la configuration du BIOS grâce à une pile (durée ~5 ans). Si déchargée, l'ordinateur demande date/heure."
+                explanation: "La table des pages contient la correspondance entre numéros de pages virtuelles et numéros de pages physiques en mémoire centrale."
             },
             {
                 type: 'qcm',
-                question: "Pourquoi la mémoire graphique doit-elle permettre la lecture ET l'écriture simultanées ?",
+                question: "Dans la segmentation, qu'est-ce qui varie pendant l'exécution du programme ?",
                 options: [
-                    "Pour économiser de l'énergie",
-                    "Le processeur graphique écrit pendant que le RAMDAC lit pour l'affichage",
-                    "Pour augmenter la vitesse",
-                    "C'est une obligation technique"
+                    "Le nombre de segments",
+                    "La taille des segments",
+                    "L'adresse de base",
+                    "Rien ne varie"
                 ],
                 correct: 1,
-                explanation: "Le GPU écrit les données pendant que le RAMDAC lit constamment pour afficher à l'écran. La DRAM classique ne permet PAS cela."
+                explanation: "Contrairement à la pagination (taille fixe), la taille des segments peut varier pendant l'exécution du programme."
+            },
+            {
+                type: 'qcm',
+                question: "Quels sont les segments typiques d'un programme ?",
+                options: [
+                    "Code, données, pile, tas",
+                    "Entrée, sortie, traitement",
+                    "RAM, ROM, Cache",
+                    "Processeur, mémoire, disque"
+                ],
+                correct: 0,
+                explanation: "Un programme segmenté contient : segment de code (instructions), données (variables globales), pile (paramètres), tas (allocations dynamiques)."
             },
 
             // QRM
             {
                 type: 'qrm',
-                question: "Quelles sont les caractéristiques des mémoires vives (RAM) ? (Plusieurs réponses)",
-                options: [
-                    "Peuvent être lues ou écrites à volonté",
-                    "Servent de mémoire de travail",
-                    "S'effacent si non alimentées (volatiles)",
-                    "Temps d'accès rapide",
-                    "Non volatiles"
-                ],
-                correct: [0, 1, 2, 3],
-                explanation: "Les RAM sont : lecture/écriture, mémoire de travail, volatiles (s'effacent sans alimentation), et rapides. Elles ne sont PAS non volatiles."
+                question: "Quelles sont les deux principales techniques de mémoire virtuelle ? (Plusieurs réponses)",
+                options: ["Pagination", "Segmentation", "Compression", "Encryption", "Defragmentation"],
+                correct: [0, 1],
+                explanation: "Les deux techniques de mémoire virtuelle sont la pagination (pages fixes) et la segmentation (blocs variables)."
             },
             {
                 type: 'qrm',
-                question: "Quelles affirmations sont vraies concernant la SRAM ? (Plusieurs réponses)",
+                question: "Quels sont les avantages de l'algorithme LRU ? (Plusieurs réponses)",
                 options: [
-                    "Composée de 6 transistors (bascule)",
-                    "Pas besoin de rafraîchissement",
-                    "Plus chère que la DRAM",
-                    "Prend 6x plus de place que la DRAM",
-                    "Nécessite un rafraîchissement constant"
+                    "Tient compte de la localité temporelle",
+                    "Choisit la page la moins récemment utilisée",
+                    "Meilleure performance que FIFO",
+                    "Plus simple que FIFO",
+                    "Utilise des registres pour mémoriser l'utilisation"
                 ],
-                correct: [0, 1, 2, 3],
-                explanation: "La SRAM utilise une bascule à 6 transistors, ne nécessite pas de rafraîchissement, est plus chère et occupe 6x plus d'espace que la DRAM."
+                correct: [0, 1, 2, 4],
+                explanation: "LRU respecte la localité, choisit la page la moins récente, a de meilleures performances que FIFO, mais est plus complexe à implémenter (registres nécessaires)."
             },
             {
                 type: 'qrm',
-                question: "Quels sont les inconvénients de la DRAM ? (Plusieurs réponses)",
+                question: "Que contient une table des pages ? (Plusieurs réponses)",
                 options: [
-                    "Nécessite un rafraîchissement régulier",
-                    "Lecture destructive",
-                    "Pas de lecture et écriture simultanées (sauf VRAM)",
-                    "Plus chère que la SRAM",
-                    "Très lente"
+                    "Un bit de présence (page en mémoire centrale ?)",
+                    "Le numéro de page physique",
+                    "Le déplacement dans la page",
+                    "Les données du programme",
+                    "L'heure du dernier accès"
                 ],
-                correct: [0, 1, 2],
-                explanation: "La DRAM nécessite un rafraîchissement, a une lecture destructive (doit recharger après lecture), et ne permet pas lecture/écriture simultanées. Elle est moins chère que la SRAM."
+                correct: [0, 1],
+                explanation: "La table des pages contient : un bit de présence (1 = en mémoire centrale) et le numéro de page physique correspondant. Le déplacement vient de l'adresse virtuelle."
             },
             {
                 type: 'qrm',
-                question: "Quelle est l'évolution chronologique des DDR ? (Ordre correct)",
+                question: "Quelles affirmations sur la pagination sont correctes ? (Plusieurs réponses)",
                 options: [
-                    "DDR (2003) - 2 mots/lecture - 2,5V",
-                    "DDR2 (2005) - 4 mots/lecture - 1,8V",
-                    "DDR3 (2007) - 8 mots/lecture - 1,35V",
-                    "DDR4 (2015) - 1,2V",
-                    "DDR5 (2021) - 1,1V"
+                    "Mécanisme matériel transparent pour le programmeur",
+                    "Pages de taille fixe",
+                    "Traduit adresses logiques en adresses physiques",
+                    "Le programmeur choisit la taille des pages",
+                    "Peut causer des défauts de page"
                 ],
-                correct: [0, 1, 2, 3, 4],
-                explanation: "L'évolution DDR : 2003 (2 mots, 2,5V) → 2005 (4 mots, 1,8V) → 2007 (8 mots, 1,35V) → 2015 (1,2V) → 2021 (1,1V), avec réduction progressive de consommation."
+                correct: [0, 1, 2, 4],
+                explanation: "Pagination : matérielle, transparente, pages fixes, traduction d'adresses, peut avoir des défauts de page. Le programmeur ne choisit PAS la taille des pages."
             },
             {
                 type: 'qrm',
-                question: "Que contient le BIOS ? (Plusieurs réponses)",
+                question: "Quelles sont les caractéristiques de la segmentation ? (Plusieurs réponses)",
                 options: [
-                    "Programme du BIOS stocké en EEPROM",
-                    "Configuration du BIOS stockée en CMOS RAM",
-                    "Le système d'exploitation",
-                    "Possibilité de 'flasher' le BIOS",
-                    "Données volatiles uniquement"
+                    "Découpage logique visible du programmeur",
+                    "Segments de tailles variables",
+                    "Basé sur les fonctions du programme",
+                    "Segments de taille fixe",
+                    "Utilise base + déplacement"
                 ],
-                correct: [0, 1, 3],
-                explanation: "Le BIOS comprend : le programme (EEPROM), la configuration (CMOS RAM avec pile), et peut être flashé. Il ne contient pas l'OS."
+                correct: [0, 1, 2, 4],
+                explanation: "Segmentation : découpage logique, tailles variables, basé sur les fonctions (code, données, pile, tas), utilise adressage base+déplacement."
             },
 
             // Fill in the blank
             {
                 type: 'fill',
-                question: "RAM signifie Random _______ Memory.",
-                answer: ["Access", "access"],
-                explanation: "RAM = Random Access Memory (mémoire à accès aléatoire)."
+                question: "L'adresse _______ est l'emplacement réel en mémoire centrale.",
+                answer: ["physique", "Physique"],
+                explanation: "L'adresse physique est l'emplacement réel véhiculé par le bus d'adresses, contrairement à l'adresse logique (virtuelle)."
             },
             {
                 type: 'fill',
-                question: "La DRAM utilise un _______ comme cellule de base pour stocker l'information.",
-                answer: ["condensateur", "Condensateur"],
-                explanation: "La DRAM utilise l'effet capacitif du transistor (condensateur) qui se charge/décharge."
+                question: "L'adresse _______ ou virtuelle est utilisée par les programmes et le CPU.",
+                answer: ["logique", "Logique"],
+                explanation: "L'adresse logique (ou virtuelle) est celle utilisée par le programme, avant traduction en adresse physique."
             },
             {
                 type: 'fill',
-                question: "La SRAM est composée d'une bascule à _______ transistors.",
-                answer: ["6", "six"],
-                explanation: "Une cellule SRAM utilise une bascule à 6 transistors créant deux états stables."
+                question: "FIFO signifie First In _______ Out.",
+                answer: ["First", "first"],
+                explanation: "FIFO = First In First Out : la première page chargée est la première remplacée."
             },
             {
                 type: 'fill',
-                question: "La DRAM nécessite un _______ régulier car la charge diminue avec le temps.",
-                answer: ["rafraîchissement", "rafraichissement", "refresh"],
-                explanation: "Le rafraîchissement (refresh) recharge les condensateurs de la DRAM toutes les 15ns environ."
+                question: "LRU signifie Least _______ Used.",
+                answer: ["Recently", "recently"],
+                explanation: "LRU = Least Recently Used : on remplace la page utilisée le moins récemment."
             },
             {
                 type: 'fill',
-                question: "SDRAM signifie _______ Dynamic RAM.",
-                answer: ["Synchronous", "synchronous"],
-                explanation: "SDRAM = Synchronous Dynamic RAM, synchronisée avec la fréquence du processeur."
+                question: "La zone du disque dur utilisée pour la mémoire virtuelle s'appelle la _______.",
+                answer: ["swap"],
+                explanation: "Le swap est la partition du disque dur utilisée comme extension de la mémoire centrale dans la gestion de mémoire virtuelle."
             },
             {
                 type: 'fill',
-                question: "La DDR3 consomme environ _______V.",
-                answer: ["1.35", "1,35", "1.5", "1,5"],
-                explanation: "La DDR3 fonctionne à 1,35-1,5V, soit une réduction de 40% par rapport à la DDR2."
+                question: "Un _______ de page se produit quand la page demandée n'est pas en mémoire centrale.",
+                answer: ["défaut", "defaut"],
+                explanation: "Un défaut de page déclenche le chargement de la page depuis le disque vers la mémoire centrale."
             },
             {
                 type: 'fill',
-                question: "La mémoire _______ RAM conserve la configuration du BIOS grâce à une pile.",
-                answer: ["CMOS", "cmos"],
-                explanation: "La CMOS RAM conserve les paramètres du BIOS. Pile déchargée → perte date/heure."
+                question: "Dans la segmentation, on utilise l'adressage _______ + déplacement.",
+                answer: ["base", "Base"],
+                explanation: "La segmentation utilise une adresse de base du segment + un déplacement (offset) dans le segment."
             },
-    
+            {
+                type: 'fill',
+                question: "La _______ des pages permet de traduire les adresses logiques en adresses physiques.",
+                answer: ["table", "Table"],
+                explanation: "La table des pages contient la correspondance entre pages virtuelles et pages physiques."
+            },
+            {
+                type: 'fill',
+                question: "Dans un programme segmenté, la _______ stocke les paramètres des fonctions.",
+                answer: ["pile", "Pile", "stack"],
+                explanation: "Le segment pile (stack) est utilisé pour le passage de paramètres et les appels de fonctions."
+            },
+        
             // QCM
             {
                 type: 'qcm',
@@ -794,8 +837,8 @@
             const xpEarned = score * 10;
             
             const progress = JSON.parse(localStorage.getItem('t1011-quiz-progress') || '{}');
-            if (!progress.chapter4 || percentage > (progress.chapter4.score || 0)) {
-                progress.chapter4 = {
+            if (!progress.chapter5 || percentage > (progress.chapter5.score || 0)) {
+                progress.chapter5 = {
                     completed: percentage >= 60,
                     score: percentage,
                     xp: xpEarned,
