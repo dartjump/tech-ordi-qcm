@@ -138,7 +138,7 @@
             </div>
 
             <div class="buttons-container">
-                <button class="btn btn-secondary" onclick="window.location.href='index.html'">Retour</button>
+                <button class="btn btn-secondary" onclick="window.location.href='t1011-quiz-index.html'">Retour</button>
                 <button class="btn btn-primary" onclick="restartQuiz()">Recommencer</button>
             </div>
         </div>
@@ -146,6 +146,247 @@
 
     <script>
         const questionsBank = [
+            // QCM - Adressage mémoire
+            {
+                type: 'qcm',
+                question: "Quelle est la différence entre adresse logique et adresse physique ?",
+                options: [
+                    "Aucune différence",
+                    "Logique = utilisée par CPU, Physique = emplacement réel en mémoire centrale",
+                    "Logique = sur disque, Physique = en RAM",
+                    "Logique = en cache, Physique = en RAM"
+                ],
+                correct: 1,
+                explanation: "Adresse logique (ou virtuelle) : utilisée par les programmes et le CPU. Adresse physique : emplacement réel en mémoire centrale."
+            },
+            {
+                type: 'qcm',
+                question: "Qu'est-ce que la mémoire virtuelle ?",
+                options: [
+                    "Une mémoire plus rapide",
+                    "L'extension de la mémoire centrale en utilisant le disque dur",
+                    "Une mémoire cachée",
+                    "Une mémoire optique"
+                ],
+                correct: 1,
+                explanation: "La mémoire virtuelle utilise le disque dur (swap) pour étendre la capacité de la mémoire centrale quand celle-ci est insuffisante."
+            },
+            {
+                type: 'qcm',
+                question: "Dans la pagination, comment sont organisées la mémoire centrale et le disque ?",
+                options: [
+                    "En blocs de tailles différentes",
+                    "En pages de même taille",
+                    "En segments variables",
+                    "En fichiers"
+                ],
+                correct: 1,
+                explanation: "La pagination divise la mémoire centrale ET le disque (swap) en pages de même taille pour faciliter les échanges."
+            },
+            {
+                type: 'qcm',
+                question: "Que signifie l'algorithme FIFO en gestion de mémoire ?",
+                options: ["First In First Out", "Fast In Fast Out", "Fixed In Fixed Out", "Final In Final Out"],
+                correct: 0,
+                explanation: "FIFO = First In First Out : la page la plus ancienne (chargée depuis le plus longtemps) est remplacée en premier."
+            },
+            {
+                type: 'qcm',
+                question: "Que signifie l'algorithme LRU en gestion de mémoire ?",
+                options: [
+                    "Last Recently Used",
+                    "Least Recently Used",
+                    "Last Replaced Unit",
+                    "Least Replaced Unit"
+                ],
+                correct: 1,
+                explanation: "LRU = Least Recently Used : on remplace la page qui n'a pas été utilisée depuis le plus longtemps."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle est la principale différence entre pagination et segmentation ?",
+                options: [
+                    "Pagination = tailles fixes, Segmentation = tailles variables",
+                    "Pagination = logicielle, Segmentation = matérielle",
+                    "Pagination = rapide, Segmentation = lente",
+                    "Aucune différence"
+                ],
+                correct: 0,
+                explanation: "Pagination : pages de taille fixe, mécanisme matériel transparent. Segmentation : segments de taille variable, découpage logique visible."
+            },
+            {
+                type: 'qcm',
+                question: "Dans un système avec pagination, si une page = 4 Ko (2^12), combien de bits servent au déplacement dans une adresse de 16 bits ?",
+                options: ["4 bits", "8 bits", "12 bits", "16 bits"],
+                correct: 2,
+                explanation: "Page de 4 Ko = 2^12 octets, donc 12 bits pour le déplacement (offset). Les 4 bits restants (16-12) donnent le numéro de page."
+            },
+            {
+                type: 'qcm',
+                question: "Qu'est-ce qu'un 'défaut de page' ?",
+                options: [
+                    "Une erreur de programmation",
+                    "Quand la page demandée n'est pas en mémoire centrale",
+                    "Une page corrompue",
+                    "Une page trop grande"
+                ],
+                correct: 1,
+                explanation: "Un défaut de page se produit quand le CPU demande une page qui n'est pas chargée en mémoire centrale (elle est sur le disque)."
+            },
+            {
+                type: 'qcm',
+                question: "Quelle est la fonction de la table des pages ?",
+                options: [
+                    "Stocker les données du programme",
+                    "Traduire les adresses logiques en adresses physiques",
+                    "Gérer l'affichage graphique",
+                    "Compresser la mémoire"
+                ],
+                correct: 1,
+                explanation: "La table des pages contient la correspondance entre numéros de pages virtuelles et numéros de pages physiques en mémoire centrale."
+            },
+            {
+                type: 'qcm',
+                question: "Dans la segmentation, qu'est-ce qui varie pendant l'exécution du programme ?",
+                options: [
+                    "Le nombre de segments",
+                    "La taille des segments",
+                    "L'adresse de base",
+                    "Rien ne varie"
+                ],
+                correct: 1,
+                explanation: "Contrairement à la pagination (taille fixe), la taille des segments peut varier pendant l'exécution du programme."
+            },
+            {
+                type: 'qcm',
+                question: "Quels sont les segments typiques d'un programme ?",
+                options: [
+                    "Code, données, pile, tas",
+                    "Entrée, sortie, traitement",
+                    "RAM, ROM, Cache",
+                    "Processeur, mémoire, disque"
+                ],
+                correct: 0,
+                explanation: "Un programme segmenté contient : segment de code (instructions), données (variables globales), pile (paramètres), tas (allocations dynamiques)."
+            },
+
+            // QRM
+            {
+                type: 'qrm',
+                question: "Quelles sont les deux principales techniques de mémoire virtuelle ? (Plusieurs réponses)",
+                options: ["Pagination", "Segmentation", "Compression", "Encryption", "Defragmentation"],
+                correct: [0, 1],
+                explanation: "Les deux techniques de mémoire virtuelle sont la pagination (pages fixes) et la segmentation (blocs variables)."
+            },
+            {
+                type: 'qrm',
+                question: "Quels sont les avantages de l'algorithme LRU ? (Plusieurs réponses)",
+                options: [
+                    "Tient compte de la localité temporelle",
+                    "Choisit la page la moins récemment utilisée",
+                    "Meilleure performance que FIFO",
+                    "Plus simple que FIFO",
+                    "Utilise des registres pour mémoriser l'utilisation"
+                ],
+                correct: [0, 1, 2, 4],
+                explanation: "LRU respecte la localité, choisit la page la moins récente, a de meilleures performances que FIFO, mais est plus complexe à implémenter (registres nécessaires)."
+            },
+            {
+                type: 'qrm',
+                question: "Que contient une table des pages ? (Plusieurs réponses)",
+                options: [
+                    "Un bit de présence (page en mémoire centrale ?)",
+                    "Le numéro de page physique",
+                    "Le déplacement dans la page",
+                    "Les données du programme",
+                    "L'heure du dernier accès"
+                ],
+                correct: [0, 1],
+                explanation: "La table des pages contient : un bit de présence (1 = en mémoire centrale) et le numéro de page physique correspondant. Le déplacement vient de l'adresse virtuelle."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles affirmations sur la pagination sont correctes ? (Plusieurs réponses)",
+                options: [
+                    "Mécanisme matériel transparent pour le programmeur",
+                    "Pages de taille fixe",
+                    "Traduit adresses logiques en adresses physiques",
+                    "Le programmeur choisit la taille des pages",
+                    "Peut causer des défauts de page"
+                ],
+                correct: [0, 1, 2, 4],
+                explanation: "Pagination : matérielle, transparente, pages fixes, traduction d'adresses, peut avoir des défauts de page. Le programmeur ne choisit PAS la taille des pages."
+            },
+            {
+                type: 'qrm',
+                question: "Quelles sont les caractéristiques de la segmentation ? (Plusieurs réponses)",
+                options: [
+                    "Découpage logique visible du programmeur",
+                    "Segments de tailles variables",
+                    "Basé sur les fonctions du programme",
+                    "Segments de taille fixe",
+                    "Utilise base + déplacement"
+                ],
+                correct: [0, 1, 2, 4],
+                explanation: "Segmentation : découpage logique, tailles variables, basé sur les fonctions (code, données, pile, tas), utilise adressage base+déplacement."
+            },
+
+            // Fill in the blank
+            {
+                type: 'fill',
+                question: "L'adresse _______ est l'emplacement réel en mémoire centrale.",
+                answer: ["physique", "Physique"],
+                explanation: "L'adresse physique est l'emplacement réel véhiculé par le bus d'adresses, contrairement à l'adresse logique (virtuelle)."
+            },
+            {
+                type: 'fill',
+                question: "L'adresse _______ ou virtuelle est utilisée par les programmes et le CPU.",
+                answer: ["logique", "Logique"],
+                explanation: "L'adresse logique (ou virtuelle) est celle utilisée par le programme, avant traduction en adresse physique."
+            },
+            {
+                type: 'fill',
+                question: "FIFO signifie First In _______ Out.",
+                answer: ["First", "first"],
+                explanation: "FIFO = First In First Out : la première page chargée est la première remplacée."
+            },
+            {
+                type: 'fill',
+                question: "LRU signifie Least _______ Used.",
+                answer: ["Recently", "recently"],
+                explanation: "LRU = Least Recently Used : on remplace la page utilisée le moins récemment."
+            },
+            {
+                type: 'fill',
+                question: "La zone du disque dur utilisée pour la mémoire virtuelle s'appelle la _______.",
+                answer: ["swap"],
+                explanation: "Le swap est la partition du disque dur utilisée comme extension de la mémoire centrale dans la gestion de mémoire virtuelle."
+            },
+            {
+                type: 'fill',
+                question: "Un _______ de page se produit quand la page demandée n'est pas en mémoire centrale.",
+                answer: ["défaut", "defaut"],
+                explanation: "Un défaut de page déclenche le chargement de la page depuis le disque vers la mémoire centrale."
+            },
+            {
+                type: 'fill',
+                question: "Dans la segmentation, on utilise l'adressage _______ + déplacement.",
+                answer: ["base", "Base"],
+                explanation: "La segmentation utilise une adresse de base du segment + un déplacement (offset) dans le segment."
+            },
+            {
+                type: 'fill',
+                question: "La _______ des pages permet de traduire les adresses logiques en adresses physiques.",
+                answer: ["table", "Table"],
+                explanation: "La table des pages contient la correspondance entre pages virtuelles et pages physiques."
+            },
+            {
+                type: 'fill',
+                question: "Dans un programme segmenté, la _______ stocke les paramètres des fonctions.",
+                answer: ["pile", "Pile", "stack"],
+                explanation: "Le segment pile (stack) est utilisé pour le passage de paramètres et les appels de fonctions."
+            }
+        ];
             // QCM
             {
                 type: 'qcm',
