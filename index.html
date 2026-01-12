@@ -473,7 +473,7 @@
             <div class="badge-container">
                 <div class="badge">
                     <span class="badge-dot"></span>
-                    9 Chapitres
+                    10 Chapitres
                 </div>
                 <div class="badge">
                     ⚡ Questions Aléatoires
@@ -495,7 +495,7 @@
                 <div class="stat-label">Niveau</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value" id="chapters-done">0/9</div>
+                <div class="stat-value" id="chapters-done">0/10</div>
                 <div class="stat-label">Chapitres</div>
             </div>
             <div class="stat-card">
@@ -537,69 +537,16 @@
          * @type {Array<Object>}
          */
         const chapters = [
-            {
-                id: 1,
-                icon: '📚',
-                title: 'Introduction',
-                desc: 'Historique, architecture von Neumann, typologie et notion de programme',
-                questions: 25
-            },
-            {
-                id: 2,
-                icon: '🖥️',
-                title: 'Unité Centrale',
-                desc: 'CPU, UC, UAL, registres, décodeur, séquenceur et bus',
-                questions: 30
-            },
-            {
-                id: 3,
-                icon: '⚡',
-                title: 'Microprocesseur',
-                desc: 'Architecture Intel, AMD, socket, horloge, chipset et évolution',
-                questions: 28
-            },
-            {
-                id: 4,
-                icon: '💾',
-                title: 'Mémoire - Introduction',
-                desc: 'RAM, ROM, SRAM, DRAM, Flash, aspects technologiques',
-                questions: 22
-            },
-            {
-                id: 5,
-                icon: '📍',
-                title: 'Mémoire - Adressage',
-                desc: 'Adresse physique/virtuelle, décodage, temps d\'accès, mode page et rafale',
-                questions: 26
-            },
-            {
-                id: 6,
-                icon: '🗂️',
-                title: 'Mémoire - Gestion',
-                desc: 'Pagination, segmentation, table des pages, algorithmes FIFO/LRU',
-                questions: 32
-            },
-            {
-                id: 7,
-                icon: '⚡',
-                title: 'Mémoire Cache',
-                desc: 'Principe, mapping direct/associatif, voies, localité temporelle/spatiale',
-                questions: 28
-            },
-            {
-                id: 8,
-                icon: '💿',
-                title: 'Supports Magnétiques P1',
-                desc: 'Disques durs, têtes de lecture, principes physiques, encodage',
-                questions: 24
-            },
-            {
-                id: 9,
-                icon: '📀',
-                title: 'Supports Magnétiques P2',
-                desc: 'CD, DVD, Blu-ray, technologies optiques et magnéto-optiques',
-                questions: 20
-            }
+            { id: 1, title: 'Introduction', subtitle: 'Historique et concepts', questions: 25, difficulty: 'easy' },
+            { id: 2, title: 'Unité Centrale', subtitle: 'CPU, UC, UAL et Bus', questions: 30, difficulty: 'medium' },
+            { id: 3, title: 'Microprocesseur', subtitle: 'Intel, AMD, Socket', questions: 28, difficulty: 'medium' },
+            { id: 4, title: 'Mémoire Introduction', subtitle: 'RAM, ROM, SRAM, DRAM', questions: 22, difficulty: 'medium' },
+            { id: 5, title: 'Mémoire Adressage', subtitle: 'Pagination, segmentation', questions: 26, difficulty: 'hard' },
+            { id: 6, title: 'Mémoire Gestion', subtitle: 'FIFO, LRU, localité', questions: 32, difficulty: 'hard' },
+            { id: 7, title: 'Mémoire Cache', subtitle: 'Mapping, voies', questions: 28, difficulty: 'hard' },
+            { id: 8, title: 'Supports Magnétiques P1', subtitle: 'Disques, têtes', questions: 24, difficulty: 'medium' },
+            { id: 9, title: 'Supports Magnétiques P2', subtitle: 'FM, MFM, RLL', questions: 20, difficulty: 'medium' },
+            { id: 10, title: 'Médias Numériques', subtitle: 'Images, Son, Vidéo', questions: 30, difficulty: 'medium' }
         ];
 
         /**
