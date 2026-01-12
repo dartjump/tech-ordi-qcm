@@ -89,7 +89,7 @@
     <div class="container">
         <div class="header">
             <div class="header-left">
-                <a href="t1011-quiz-index.html" class="back-btn">←</a>
+                <a href="index.html" class="back-btn">←</a>
                 <div class="header-title">
                     <h1>Chapitre 6 - Mémoire Gestion</h1>
                     <p>Pagination, segmentation, FIFO, LRU</p>
@@ -138,7 +138,7 @@
             </div>
 
             <div class="buttons-container">
-                <button class="btn btn-secondary" onclick="window.location.href='t1011-quiz-index.html'">Retour</button>
+                <button class="btn btn-secondary" onclick="window.location.href='index.html'">Retour</button>
                 <button class="btn btn-primary" onclick="restartQuiz()">Recommencer</button>
             </div>
         </div>
@@ -399,7 +399,6 @@
                 answer: ["registre", "Registre"],
                 explanation: "LRU utilise des registres pour mémoriser l'historique d'utilisation de chaque page."
             },
-        
             // QCM
             {
                 type: 'qcm',
@@ -826,11 +825,9 @@
         function nextQuestion() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
-            setTimeout(() => {
-                currentQuestionIndex++;
-                displayQuestion();
-                updateProgress();
-            }, 1500);
+            currentQuestionIndex++;
+            displayQuestion();
+            updateProgress();
         }
 
         function previousQuestion() {
@@ -844,9 +841,7 @@
         function finishQuiz() {
             if (userAnswers[currentQuestionIndex] === null) return;
             validateAnswer();
-            setTimeout(() => {
-                showResults();
-            }, 1500);
+            showResults();
         }
 
         function showResults() {
