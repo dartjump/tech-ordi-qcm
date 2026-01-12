@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Chapitre 4 - Mémoire Introduction | T1011</title>
+    <title>Quiz Chapitre 2 - Unité Centrale | T1011</title>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -89,10 +89,10 @@
     <div class="container">
         <div class="header">
             <div class="header-left">
-                <a href="t1011-quiz-index.html" class="back-btn">←</a>
+                <a href="index.html" class="back-btn">←</a>
                 <div class="header-title">
-                    <h1>Chapitre 4 - Mémoire Introduction</h1>
-                    <p>RAM, ROM, SRAM, DRAM, Flash</p>
+                    <h1>Chapitre 2 - Unité Centrale</h1>
+                    <p>CPU, UC, UAL et Bus</p>
                 </div>
             </div>
             <div class="header-score">
@@ -600,8 +600,8 @@
             const xpEarned = score * 10;
             
             const progress = JSON.parse(localStorage.getItem('t1011-quiz-progress') || '{}');
-            if (!progress.chapter4 || percentage > (progress.chapter4.score || 0)) {
-                progress.chapter4 = {
+            if (!progress.chapter2 || percentage > (progress.chapter2.score || 0)) {
+                progress.chapter2 = {
                     completed: percentage >= 60,
                     score: percentage,
                     xp: xpEarned,
